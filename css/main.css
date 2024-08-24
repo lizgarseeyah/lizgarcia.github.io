@@ -896,3 +896,45 @@ body.light-theme{
     }
 
 }
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative; /* Ensure the dropdown is positioned relative to the parent */
+}
+
+.dropdown-button {
+    background-color: var(--secondary-background-color);
+    color: var(--light-color);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none; /* Hide dropdown content by default */
+    position: absolute;
+    top: 100%; /* Position below the button */
+    left: 0;
+    width: auto; /* Match the width of the button */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown content on hover */
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 1rem;
+    color: #3d3d3d; /* text color*/
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--primary-background-color);
+    color: white;
+}
+
+  
