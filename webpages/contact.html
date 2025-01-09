@@ -86,24 +86,25 @@
     <div class="search-form-container container" id="search-form-container">
 
         <div class="form-container-inner">
-
             <!-- <form action="" class="form">
                 <input class="form-input" type="text" placeholder="What are you looking for?">
                 <button class="btn form-btn" type="submit">
                     <i class="ri-search-line"></i>
                 </button>
             </form> -->
-            <!-- Google Custom Search -->
-            <script async src="https://cse.google.com/cse.js?cx=53722589b3b804444"></script>
-            <div class="gcse-searchbox-only"></div>
-            <div id="search-results" class="search-results"></div>
-            <span class="form-note">Or press ESC to close.</span>
-        </div>
+        <!-- Google Custom Search -->
+        <form action="/search-results.html" method="GET" class="form">
+            <input name="q" class="form-input" type="text" placeholder="What are you looking for?" required>
+            <button class="btn form-btn" type="submit">
+                <i class="ri-search-line"></i>
+            </button>
+        </form>
+        <span class="form-note">Or press ESC to close.</span>
+    </div>
 
         <button class="btn form-close-btn place-items-center" id="form-close-btn">
             <i class="ri-close-line"></i>
         </button>
-
     </div>
 
     <!-- Contact Form Section -->
