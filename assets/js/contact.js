@@ -1,3 +1,6 @@
+// variable
+let debounceTimer;
+
 // Grab elements
 const selectElement = (selector) => {
     const element = document.querySelector(selector);
@@ -38,6 +41,41 @@ formCloseBtn.addEventListener('click', () => searchContainer.classList.remove('a
 // Close the search form popup on ESC keypress
 window.addEventListener('keyup', (event) => {
     if (event.key === 'Escape') searchContainer.classList.remove('activated');
+});
+
+// Search functionality
+document.getElementById('search-input').addEventListener('input', (event) => {
+    const query = event.target.value.trim();
+    const resultsContainer = document.getElementById('search-results');
+
+    // Clear previous results
+    resultsContainer.innerHTML = '';
+
+    if (!query) return;
+
+    // Debounce to limit API calls
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(async () => {
+        try {
+            const response = await fetch('/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query }),
+            });
+
+            if (response.ok) {
+                const results = await response.json();
+                resultsContainer.innerHTML = results.length
+                    ? results.map(result => `<div class="result-item">${result}</div>`).join('')
+                    : '<p>No results found.</p>';
+            } else {
+                resultsContainer.innerHTML = '<p>Error retrieving results.</p>';
+            }
+        } catch (error) {
+            console.error(error);
+            resultsContainer.innerHTML = '<p>Error retrieving results.</p>';
+        }
+    }, 300); // Adjust delay as needed (300ms is common)
 });
 
 // Switch theme/add to local storage

@@ -262,6 +262,26 @@ body.light-theme{
     height: 4rem;
     display: flex;
 }
+/* Search Results */
+.search-results {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--primary-background-color);
+    border: 1px solid var(--secondary-background-color);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.result-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--secondary-background-color);
+    cursor: pointer;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
 
 /* Form JavaScript styles */
 .search-form-container.activated{
@@ -1024,5 +1044,71 @@ body.light-theme{
     background-color: var(--light-color-alt);
     color: var(--light-color);
   }
+
+  /* Universal Search for Google Search Box */
+  /* Style the input field */
+.gsc-input {
+    width: 100%;
+    padding: 1.5rem;
+    border: 2px solid var(--secondary-background-color);
+    border-right: none;
+    border-radius: 0;
+    background-color: var(--primary-background-color);
+    color: var(--light-color-alt);
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Style the search button */
+.gsc-search-button {
+    padding: 1.5rem;
+    border: 2px solid var(--secondary-background-color);
+    border-left: none;
+    background-color: var(--secondary-background-color);
+    color: var(--light-color-alt);
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Keep search results container hidden until results are displayed */
+.gsc-results-wrapper-visible {
+    display: block !important;
+}
+
+.gsc-results-wrapper {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--primary-background-color);
+    border: 1px solid var(--secondary-background-color);
+}
+
+/* Style the individual search results */
+.gsc-result {
+    padding: 1rem;
+    border-bottom: 1px solid var(--secondary-background-color);
+    color: var(--light-color-alt);
+    text-decoration: none;
+}
+
+.gsc-result:hover {
+    background-color: var(--secondary-background-color);
+}
+
+.gsc-result .gsc-title {
+    font-weight: bold;
+}
+
+.gsc-result .gsc-url {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* Optional: Hide Google Branding */
+.gsc-branding {
+    display: none;
+}
+
   
   
