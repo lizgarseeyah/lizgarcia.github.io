@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- Homepage -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <!-- Contact Page -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/contact.html</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!-- Faith Page -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/faith.html</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!-- Blog Page -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/blog.html</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!-- Technology Page -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/technology.html</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!-- Creative Content Page -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/creativecontent.html</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <!-- Agency Page -->
+   <url>
+      <loc>https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/agency.html</loc>
+      <lastmod>2025-01-10</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+</urlset>
