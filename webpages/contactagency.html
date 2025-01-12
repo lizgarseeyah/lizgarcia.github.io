@@ -1,0 +1,340 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaliCreative | Home</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/letterL.png">
+    <!-- Remix icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Swiper.js styles -->
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css"/>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../assets/css/contactagency.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+
+        <nav class="navbar container">
+            <a href="../webpages/agency.html">
+                <h2 class="logo">CaliCreative</h2>
+            </a>
+            <div class="menu" id="menu">
+                <ul class="list">
+                    <li class="list-item">
+                        <a href="../webpages/agency.html" class="list-link current">Home</a>
+                    </li>
+                    <li class="list-item dropdown">
+                        <div class="dropdown">
+                            <button class="dropdown-button">Categories</button>
+                            <!-- Dropdown menu -->
+                            <div class="dropdown-content">
+                                <a href="./faith.html">✝ Faith</a>
+                                <a href="./blog.html">Blog</a>
+                                <a href="./technology.html">Technology</a>
+                                <a href="./creativecontent.html">Photography & Film</a>
+                                <a href="./agency.html">WIP-Agency</a>
+                            </div>
+                        </div>
+                   </li> 
+                    <li class="list-item">
+                        <a href="./contact.html" class="list-link">Contact</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="../webpages/agency.html" class="list-link">Project Cross</a>
+                    </li>
+                    <!-- <li class="list-item screen-lg-hidden">
+                        <a href="./signin.html" class="list-link">Sign in</a>
+                    </li>
+                    <li class="list-item screen-lg-hidden">
+                        <a href="./signup.html" class="list-link">Sign up</a>
+                    </li> -->
+                </ul>
+            </div>
+
+            <div class="list list-right">
+                <button class="btn place-items-center" id="theme-toggle-btn">
+                    <i class="ri-sun-line sun-icon"></i>
+                    <i class="ri-moon-line moon-icon"></i>
+                </button>
+
+                <button class="btn place-items-center" id="search-icon">
+                    <i class="ri-search-line"></i>
+                </button>
+
+                <button class="btn place-items-center screen-lg-hidden menu-toggle-icon" id="menu-toggle-icon">
+                    <i class="ri-menu-3-line open-menu-icon"></i>
+                    <i class="ri-close-line close-menu-icon"></i>
+                </button>
+                <a href="./agency.html" class="btn place-items-center" id="search-icon">
+                    <i class="ri-key-line"></i>
+                </a>                
+
+                <!-- <a href="#" class="list-link screen-sm-hidden">Sign in</a>
+                <a href="#" class="btn sign-up-btn fancy-border screen-sm-hidden">
+                    <span>Sign up</span>
+                </a> -->
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Search -->
+    <div class="search-form-container container" id="search-form-container">
+
+        <div class="form-container-inner">
+            <!-- <form action="" class="form">
+                <input class="form-input" type="text" placeholder="What are you looking for?">
+                <button class="btn form-btn" type="submit">
+                    <i class="ri-search-line"></i>
+                </button>
+            </form> -->
+        <!-- Google Custom Search -->
+        <form action="../search-results.html" method="GET" class="form">
+            <input name="q" class="form-input" type="text" placeholder="What are you looking for?" required>
+            <button class="btn form-btn" type="submit">
+                <i class="ri-search-line"></i>
+            </button>
+        </form>
+        <span class="form-note">Or press ESC to close.</span>
+    </div>
+
+        <button class="btn form-close-btn place-items-center" id="form-close-btn">
+            <i class="ri-close-line"></i>
+        </button>
+    </div>
+
+    <!-- Contact Form Section -->
+    <section class="featured-articles section section-header-offset">
+        <div class="featured-articles-container container d-grid">
+            <div class="featured-content d-grid">
+                <div class="headline-banner">
+                    <span class="headline-description">Contact</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+          <!-- Contact Heading -->
+          <div class="contact-heading">
+            <h1>Can't wait to meet you!</h1>
+            <p>
+              – and make you smile. Send us a note with your questions or
+              consultation requests, and a member of our team will be back in touch
+              shortly.
+            </p>
+          </div>
+      
+          <!-- Contact Form -->
+        <form
+            action="https://formsubmit.co/spamemail290290@gmail.com"
+            method="POST"
+            class="contact-form"
+        >
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Name" required />
+              <input type="email" name="email" placeholder="Email" required />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone"
+                pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <select name="location" required>
+                <option value="" disabled selected>Select Location</option>
+                <!-- <option value="boston">Boston</option>
+                <option value="new-york">New York</option> -->
+                <option value="remote">Remote</option>
+                <option value="remote">Other</option>
+                <option value="alabama">Alabama</option>
+                <option value="alaska">Alaska</option>
+                <option value="arizona">Arizona</option>
+                <option value="arkansas">Arkansas</option>
+                <option value="california">California</option>
+                <option value="colorado">Colorado</option>
+                <option value="connecticut">Connecticut</option>
+                <option value="delaware">Delaware</option>
+                <option value="florida">Florida</option>
+                <option value="georgia">Georgia</option>
+                <option value="hawaii">Hawaii</option>
+                <option value="idaho">Idaho</option>
+                <option value="illinois">Illinois</option>
+                <option value="indiana">Indiana</option>
+                <option value="iowa">Iowa</option>
+                <option value="kansas">Kansas</option>
+                <option value="kentucky">Kentucky</option>
+                <option value="louisiana">Louisiana</option>
+                <option value="maine">Maine</option>
+                <option value="maryland">Maryland</option>
+                <option value="massachusetts">Massachusetts</option>
+                <option value="michigan">Michigan</option>
+                <option value="minnesota">Minnesota</option>
+                <option value="mississippi">Mississippi</option>
+                <option value="missouri">Missouri</option>
+                <option value="montana">Montana</option>
+                <option value="nebraska">Nebraska</option>
+                <option value="nevada">Nevada</option>
+                <option value="new-hampshire">New Hampshire</option>
+                <option value="new-jersey">New Jersey</option>
+                <option value="new-mexico">New Mexico</option>
+                <option value="new-york">New York</option>
+                <option value="north-carolina">North Carolina</option>
+                <option value="north-dakota">North Dakota</option>
+                <option value="ohio">Ohio</option>
+                <option value="oklahoma">Oklahoma</option>
+                <option value="oregon">Oregon</option>
+                <option value="pennsylvania">Pennsylvania</option>
+                <option value="rhode-island">Rhode Island</option>
+                <option value="south-carolina">South Carolina</option>
+                <option value="south-dakota">South Dakota</option>
+                <option value="tennessee">Tennessee</option>
+                <option value="texas">Texas</option>
+                <option value="utah">Utah</option>
+                <option value="vermont">Vermont</option>
+                <option value="virginia">Virginia</option>
+                <option value="washington">Washington</option>
+                <option value="west-virginia">West Virginia</option>
+                <option value="wisconsin">Wisconsin</option>
+                <option value="wyoming">Wyoming</option>
+              </select>
+            </div>
+                <!-- Add Combo Checkboxes Here -->
+            <div class="form-row">
+                <fieldset class="checkbox-grid">
+                    <legend>Select the services you'd like to discuss:</legend>
+                    <label><input type="checkbox" name="services" value="photography"> Photography</label><br>
+                    <label><input type="checkbox" name="services" value="videography"> Videography</label><br>
+                    <label><input type="checkbox" name="services" value="editing"> Editing</label><br>
+                    <label><input type="checkbox" name="services" value="graphic-design"> Graphic Design</label><br>
+                    <label><input type="checkbox" name="services" value="web-development"> Web Development</label><br>
+                    <label><input type="checkbox" name="services" value="marketing"> Marketing</label><br>
+                    <label><input type="checkbox" name="services" value="social-media-strategy"> Social Media Strategy</label><br>
+                    <label><input type="checkbox" name="services" value="branding"> Branding</label><br>
+                    <label><input type="checkbox" name="services" value="other"> Other</label><br>
+                </fieldset>
+            </div>
+            <div class="form-row">
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Message"
+                required
+              ></textarea>
+            </div>
+                <!-- Hidden inputs for additional customization -->
+                <input type="hidden" name="_subject" value="New Contact Form Submission" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://lizgarseeyah.github.io/lizgarcia.github.io/webpages/thankyou.html" />
+            <button type="submit" class="submit-btn">Submit</button>
+          </form>
+        </div>
+      </section>
+      
+
+    <!-- Popular tags -->
+    <section class="popular-tags section">
+
+        <div class="container">
+
+            <h2 class="title section-title" data-name="Contact">Contact</h2>
+
+            <div class="popular-tags-container d-grid">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section">
+
+        <div class="footer-container container d-grid">
+            
+            <div class="company-data">
+                <a href="../webpages/agency.html">
+                    <h2 class="logo">Liz Garcia</h2>
+                </a>
+                <p class="company-description">Liz Garcia is a Cloud Solution Architect and consultant with a rich background in software development and a passion for content creation in photos and film. With her roots in California, Liz combines technical expertise with a creative spirit, offering a unique perspective to her clients and audience alike.</p>
+                
+                <ul class="list social-media">
+                    <li class="list-item">
+                        <a href="https://www.instagram.com/lizgarseeyah/" class="list-link"><i class="ri-instagram-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link"><i class="ri-twitter-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="https://www.youtube.com/@LizGPT" class="list-link"><i class="ri-youtube-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="https://github.com/lizgarseeyah" class="list-link"><i class="ri-github-line"></i></a>
+                    </li>
+                </ul>
+
+                <span class="copyright-notice">&copy;2025 Liz Garcia. All rights reserved.</span>
+            </div>
+
+            <div>
+                <h6 class="title footer-title">Categories</h6>
+                
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="./faith.html" class="list-link">Faith</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="./blog.html" class="list-link">Blog</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="./technology.html" class="list-link">Technology</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="./creativecontent.html" class="list-link">Photography & Film</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div>
+                <h6 class="title footer-title">Useful links</h6>
+                
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="../webpages/agency.html" class="list-link">Home</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="../webpages/contact.html" class="list-link">Contact</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="./about.html" class="list-link">About</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="./faq.html" class="list-link">F.A.Q.</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- <div>
+                <h6 class="title footer-title">What should I do with this space</h6>
+                
+            </div> -->
+
+        </div>
+        
+    </footer>
+
+    <!-- Swiper.js -->
+    <!-- <script src="./assets/js/swiper-bundle.min.js"></script> -->
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <!-- Custom script -->
+    <script src="../assets/js/contact.js"></script>
+</body>
+</html>

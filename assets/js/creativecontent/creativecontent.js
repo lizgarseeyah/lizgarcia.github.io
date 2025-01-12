@@ -1,3 +1,13 @@
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const captionText = document.getElementById("captionText");
+const closeBtn = document.querySelector(".close");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+
+let images = Array.from(document.querySelectorAll(".gallery-item"));
+let currentIndex = 0;
+
 // Grab elements
 const selectElement = (selector) => {
     const element = document.querySelector(selector);
@@ -87,4 +97,37 @@ const swiper = new Swiper(".swiper", {
             slidesPerView: 3
         }
     }   
+});
+
+/* Modal and Navigation */
+images.forEach((image, index) => {
+    image.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "block";
+        modalImg.src = image.href;
+        captionText.innerText = image.title;
+        currentIndex = index;
+    });
+});
+
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    modalImg.src = images[currentIndex].href;
+    captionText.innerText = images[currentIndex].title;
+});
+
+nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    modalImg.src = images[currentIndex].href;
+    captionText.innerText = images[currentIndex].title;
+});
+
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
 });

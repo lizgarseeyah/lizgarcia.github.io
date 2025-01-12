@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liz Garcia | Agency</title>
+    <title>CaliCreative | Agency</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/letterL.png">
     <!-- Remix icons -->
@@ -12,129 +12,118 @@
     <!-- Swiper.js styles -->
     <link rel="stylesheet" href="../css/swiper-bundle.min.css"/>
     <link href="../assets/css/agency.css" rel="stylesheet">
-
 </head>
 <body>
     <!-- Header -->
     <header class="bg-white shadow-md fixed w-full z-10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="./agency.html" class="text-xl font-bold">Liz Garcia</a>
+            <a href="./agency.html" class="text-xl font-bold">CaliCreative</a>
             <nav class="space-x-4">
                 <a href="#hero" class="scroll-link">Home</a>
                 <a href="#services" class="scroll-link">Services</a>
                 <a href="#about" class="scroll-link">About</a>
-                <a href="#contact" class="scroll-link">Contact</a>
+                <a href="#portfolio" class="scroll-link">Portfolio</a>
+                <a href="#testimonials" class="scroll-link">Testimonials</a>
+                <a href="../webpages/contactagency.html" class="scroll-link">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- Header -->
-    <header class="header" id="header">
-
-        <nav class="navbar container">
-            <a href="./agency.html">
-                <h2 class="logo">Liz Garcia</h2>
-            </a>
-            <div class="menu" id="menu">
-                <ul class="list">
-                    <li class="list-item">
-                        <a href="./agency.html" class="list-link current">Home</a>
-                    </li>
-                    <li class="list-item dropdown">
-                        <div class="dropdown">
-                            <button class="dropdown-button">Categories</button>
-                            <!-- Dropdown menu -->
-                            <div class="dropdown-content">
-                                <a href="../webpages/technology.html">Technology</a>
-                                <a href="../webpages/creativecontent.html">Photography & Film</a>
-                                <a href="../webpages/agency.html">WIP-Agency</a>
-                            </div>
-                        </div>
-                   </li> 
-                    <li class="list-item">
-                        <a href="../webpages/contact.html" class="list-link">Contact</a>
-                    </li>
-                    <!-- <li class="list-item screen-lg-hidden">
-                        <a href="./signin.html" class="list-link">Sign in</a>
-                    </li>
-                    <li class="list-item screen-lg-hidden">
-                        <a href="./signup.html" class="list-link">Sign up</a>
-                    </li> -->
-                </ul>
-            </div>
-
-            <div class="list list-right">
-                <button class="btn place-items-center" id="theme-toggle-btn">
-                    <i class="ri-sun-line sun-icon"></i>
-                    <i class="ri-moon-line moon-icon"></i>
-                </button>
-
-                <button class="btn place-items-center" id="search-icon">
-                    <i class="ri-search-line"></i>
-                </button>
-
-                <button class="btn place-items-center screen-lg-hidden menu-toggle-icon" id="menu-toggle-icon">
-                    <i class="ri-menu-3-line open-menu-icon"></i>
-                    <i class="ri-close-line close-menu-icon"></i>
-                </button>
-
-                <!-- <a href="#" class="list-link screen-sm-hidden">Sign in</a>
-                <a href="#" class="btn sign-up-btn fancy-border screen-sm-hidden">
-                    <span>Sign up</span>
-                </a> -->
-                <a href="../index.html" class="btn place-items-center" id="search-icon">
-                    <i class="ri-key-line"></i>
-                </a>    
-            </div>
-
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="h-screen bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080');">
+    <!-- Hero Section with Video -->
+    <section id="hero" class="h-screen relative">
+        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+            <source src="../assets/videos/hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="flex items-center justify-center h-full bg-gray-900 bg-opacity-50">
             <div class="text-center text-white">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Liz Garcia</h1>
-                <p class="text-lg md:text-xl mb-6">Your trusted partner for success</p>
-                <a href="#services" class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700">Explore Services</a>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to CaliCreative</h1>
+                <p class="text-lg md:text-xl mb-6">Your trusted partner for agency support</p>
+                <a href="#services" class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700">Discover Services</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8">Our Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded shadow">
-                    <h3 class="text-xl font-semibold mb-4">Service 1</h3>
-                    <p>Description of service 1.</p>
-                </div>
-                <div class="bg-white p-6 rounded shadow">
-                    <h3 class="text-xl font-semibold mb-4">Service 2</h3>
-                    <p>Description of service 2.</p>
-                </div>
-                <div class="bg-white p-6 rounded shadow">
-                    <h3 class="text-xl font-semibold mb-4">Service 3</h3>
-                    <p>Description of service 3.</p>
-                </div>
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">About</h2>
+        <p class="about-text">
+            CaliCreative is a dynamic agency delivering cutting-edge solutions in photography, videography, web design, and marketing.
+            We combine industry best practices with a creative touch to elevate your brand, capture your moments, and craft visually stunning narratives.
+            From professional sports events to weddings and beyond, CaliCreative is your partner in bringing ideas to life with precision, artistry, and strategic marketing.
+        </p>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-16 bg-gray-100">
+    <!-- Content -->
+</section>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded shadow">
+                <img src="../assets/images/agency/photography_work.jpg" alt="Project 1" class="mb-4">
+                <h3 class="text-xl font-semibold mb-2">Photography & Film</h3>
+                <p>Capture every moment with stunning precision and artistry. From professional sports events to weddings and portraits, we deliver high-quality photography and videography tailored to your unique needs. Whether it's action-packed highlights or intimate moments, our work reflects creativity and excellence.</p>
+                <button class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</button>
+            </div>
+            <div class="bg-white p-6 rounded shadow">
+                <img src="../assets/images/agency/web_dev.jpg" alt="Project 2" class="mb-4">
+                <h3 class="text-xl font-semibold mb-2">Web Design & Development</h3>
+                <p>Transform your online presence with visually engaging and functional websites. We create user-centric designs that reflect your brand identity, combining cutting-edge aesthetics with seamless functionality to make a lasting digital impression.</p>
+                <button class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</button>
+            </div>
+            <div class="bg-white p-6 rounded shadow">
+                <img src="../assets/images/agency/baseball.jpg" alt="Project 3" class="mb-4">
+                <h3 class="text-xl font-semibold mb-2">Social Media Strategy & Marketing</h3>
+                <p>Elevate your brand with a comprehensive social media approach. We craft customized strategies, engaging content, and targeted marketing campaigns that connect with your audience and amplify your online reach.</p>
+                <button class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</button>
+            </div>
+            <div class="bg-white p-6 rounded shadow">
+                <img src="../assets/images/agency/baseball.jpg" alt="Project 3" class="mb-4">
+                <h3 class="text-xl font-semibold mb-2">Content Ideation & Collaboration</h3>
+                <p>Bring your ideas to life with innovative concepts and expert collaboration. From ideation to execution, we partner with you to create compelling visuals, videos, and narratives that align with your vision and goals.</p>
+                <button class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</button>
+            </div>
+            <div class="bg-white p-6 rounded shadow">
+                <img src="../assets/images/agency/baseball.jpg" alt="Project 3" class="mb-4">
+                <h3 class="text-xl font-semibold mb-2">Graphic Design & Editing</h3>
+                <p>Enhance your brand’s visual impact with professional graphic design and editing services. We design stunning visuals and fine-tune every detail to ensure your content stands out across all platforms.</p>
+                <button class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
+    <!-- Testimonials Section -->
+    <!-- <section id="testimonials" class="py-16 bg-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8">About Us</h2>
-            <p class="text-center">We are dedicated to delivering top-notch solutions for our clients. Our team of experts ensures the best outcomes every time.</p>
-        </div>
-    </section>
+            <h2 class="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 border rounded shadow">
+                    <p class="italic">"CaliCreative provided exceptional service! Highly recommended."</p>
+                    <h3 class="text-lg font-semibold mt-4">- Client Name</h3>
+                </div>
+                <div class="p-6 border rounded shadow">
+                    <p class="italic">"Amazing results and a great team to work with."</p>
+                    <h3 class="text-lg font-semibold mt-4">- Another Client</h3>
+                </div>
+            </div>
+        </div> 
+    </section> -->
 
     <!-- Contact Section -->
     <footer id="contact" class="py-16 bg-gray-800 text-white">
         <div class="container mx-auto text-center">
-            <p class="mb-4">Contact us: <a href="mailto:info@lizgarcia.com" class="underline">info@lizgarcia.com</a></p>
-            <p>&copy; 2025 Liz Garcia. All rights reserved.</p>
+            <p class="mb-4">
+                Contact us: <a href="../webpages/contactagency.html" class="underline" target="_blank" rel="noopener">Visit our Contact Page</a>
+            </p>            
+            <p>&copy; 2025 CaliCreative. All rights reserved.</p>
         </div>
     </footer>
 
