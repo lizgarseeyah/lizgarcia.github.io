@@ -3,13 +3,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liz Garcia | Home</title>
+    <title>Liz Garcia | Contact</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/letterL.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/letterL.png">
     <!-- Remix icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Swiper.js styles -->
-    <link rel="stylesheet" href="../../js/swiper-bundle.min.js"/>
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css"/>
     <!-- Custom styles -->
     <link rel="stylesheet" href="../../assets/css/webpagecss/technology.css">
     
@@ -33,17 +33,15 @@
                             <!-- Dropdown menu -->
                             <div class="dropdown-content">
                                 <a href="../faith.html">✝ Faith</a>
-                                <a href="../blog.html">Blog</a>
+                                <a href="../lifestyle.html">Lifestyle</a>
                                 <a href="../technology.html">Technology</a>
-                                <a href="../creativecontent.html">Photography & Film</a>
+                                <a href="../contentcreation.html">Photography & Film</a>
+                                <a href="../agency.html">Creative</a>
                             </div>
                         </div>
                    </li> 
                     <li class="list-item">
-                        <a href="#" class="list-link">Contact</a>
-                    </li>
-                    <li class="list-item">
-                        <a href="../../index.html" class="list-link">Project Cross</a>
+                        <a href="../contact.html" class="list-link">Contact</a>
                     </li>
                     <!-- <li class="list-item screen-lg-hidden">
                         <a href="./signin.html" class="list-link">Sign in</a>
@@ -68,6 +66,9 @@
                     <i class="ri-menu-3-line open-menu-icon"></i>
                     <i class="ri-close-line close-menu-icon"></i>
                 </button>
+                <a href="./agency.html" class="btn place-items-center" id="search-icon">
+                    <i class="ri-key-line"></i>
+                </a>                
 
                 <!-- <a href="#" class="list-link screen-sm-hidden">Sign in</a>
                 <a href="#" class="btn sign-up-btn fancy-border screen-sm-hidden">
@@ -82,191 +83,90 @@
     <div class="search-form-container container" id="search-form-container">
 
         <div class="form-container-inner">
-
-            <form action="" class="form">
+            <!-- <form action="" class="form">
                 <input class="form-input" type="text" placeholder="What are you looking for?">
                 <button class="btn form-btn" type="submit">
                     <i class="ri-search-line"></i>
                 </button>
-            </form>
-            <span class="form-note">Or press ESC to close.</span>
-
-        </div>
+            </form> -->
+        <!-- Google Custom Search -->
+        <form action="../search-results.html" method="GET" class="form">
+            <input name="q" class="form-input" type="text" placeholder="What are you looking for?" required>
+            <button class="btn form-btn" type="submit">
+                <i class="ri-search-line"></i>
+            </button>
+        </form>
+        <span class="form-note">Or press ESC to close.</span>
+    </div>
 
         <button class="btn form-close-btn place-items-center" id="form-close-btn">
             <i class="ri-close-line"></i>
         </button>
-
     </div>
 
-    <!-- Featured articles -->
+    <!-- Title Section -->
     <section class="featured-articles section section-header-offset">
+        <div class="container">
 
-        <div class="featured-articles-container container d-grid">
+            <h2 class="title section-title" data-name="Introduction to Kubernetes">Introduction to Kubernetes</h2>
 
-            <div class="featured-content d-grid">
-
-                <div class="headline-banner">
-                    <span class="headline-description">Technology_Kubernetes PAGE</span>
-                </div>
-
-                <!-- <a href="./post.html" class="article featured-article featured-article-3">
-                    <img src="../../assets/images/featured/featured-3.jpg" alt="" class="article-image">
-                    <span class="article-category">Travel</span>
-
-                    <div class="article-data-container">
-
-                        <div class="article-data">
-                            <span>Mar 5th 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>5 Min read</span>
-                        </div>
-
-                        <h3 class="title article-title">Travel Plans</h3>  
-
-                    </div>
-                </a> -->
-
-                <a href="./post.html" class="article featured-article featured-article-3">
-                    <div class="video-container">
-                        <iframe
-                            src="https://www.youtube.com/embed/Cq3-4cGOSIA?rel=0"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <span class="article-category">Travel</span>
-                
-                    <div class="article-data-container">
-                        <div class="article-data">
-                            <span>Mar 5th 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>5 Min read</span>
-                        </div>
-                
-                        <h3 class="title article-title">Travel Plans</h3>  
-                    </div>
-                </a>                
-
+            <div class="popular-tags-container d-grid">
             </div>
-            
-            <div class="sidebar d-grid">
-
-                <h3 class="title featured-content-title">Latest</h3>
-
-                <a href="#" class="trending-news-box">
-                    <div class="trending-news-img-box">
-                        <span class="trending-number place-items-center">01</span>
-                        <img src="../../assets/images/trending/trending_1.jpg" alt="" class="article-image">
-                    </div>
-
-                    <div class="trending-news-data">
-
-                        <div class="article-data">
-                            <span>23 Mar 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>3 Min read</span>
-                        </div>
-
-                        <h3 class="title article-title">Sample article title</h3>
-
-                    </div>
-                </a>
-
-                <a href="#" class="trending-news-box">
-                    <div class="trending-news-img-box">
-                        <span class="trending-number place-items-center">02</span>
-                        <img src="../../assets/images/trending/trending_2.jpg" alt="" class="article-image">
-                    </div>
-
-                    <div class="trending-news-data">
-
-                        <div class="article-data">
-                            <span>23 Mar 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>3 Min read</span>
-                        </div>
-
-                        <h3 class="title article-title">Sample article title</h3>
-
-                    </div>
-                </a>
-
-                <a href="#" class="trending-news-box">
-                    <div class="trending-news-img-box">
-                        <span class="trending-number place-items-center">03</span>
-                        <img src="../../assets/images/trending/trending_3.jpg" alt="" class="article-image">
-                    </div>
-
-                    <div class="trending-news-data">
-
-                        <div class="article-data">
-                            <span>23 Mar 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>3 Min read</span>
-                        </div>
-
-                        <h3 class="title article-title">Sample article title</h3>
-
-                    </div>
-                </a>
-
-                <a href="#" class="trending-news-box">
-                    <div class="trending-news-img-box">
-                        <span class="trending-number place-items-center">04</span>
-                        <img src="../../assets/images/trending/trending_4.jpg" alt="" class="article-image">
-                    </div>
-
-                    <div class="trending-news-data">
-
-                        <div class="article-data">
-                            <span>23 Mar 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>3 Min read</span>
-                        </div>
-
-                        <h3 class="title article-title">Sample article title</h3>
-
-                    </div>
-                </a>
-
-                <a href="#" class="trending-news-box">
-                    <div class="trending-news-img-box">
-                        <span class="trending-number place-items-center">05</span>
-                        <img src="../../assets/images/trending/trending_5.jpg" alt="" class="article-image">
-                    </div>
-
-                    <div class="trending-news-data">
-
-                        <div class="article-data">
-                            <span>23 Mar 2023</span>
-                            <span class="article-data-spacer"></span>
-                            <span>3 Min read</span>
-                        </div>
-
-                        <h3 class="title article-title">Sample article title</h3>
-
-                    </div>
-                </a>
-
-            </div>
-
         </div>
-
     </section>
-
+    
+    <!-- Video Content -->
+    <section class="video-section">
+        <!-- First Video -->
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/Cq3-4cGOSIA?rel=0"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="text-container">
+            <p>
+                This series of tutorials provides a step-by-step guide to preparing, deploying, and managing a multi-container application on Azure Kubernetes Service (AKS). In part one, the process involves preparing a sample application by cloning its source code from GitHub, building a container image, and testing the application locally using Docker Compose. Part two focuses on creating an Azure Container Registry (ACR), a private registry for securely building and deploying containerized applications, and demonstrates how to use ACR Tasks to build and push container images to the registry.
+            </p>
+            <p>
+                In part three, the deployment of a Kubernetes cluster in AKS is covered, including the installation of the Kubernetes CLI (kubectl) and configuration to connect to the AKS cluster for seamless interaction with the deployment. In part four, the sample application is deployed to the AKS cluster by updating a Kubernetes manifest file, running the application in the cluster, and testing it to ensure proper functionality. This series provides a comprehensive foundation for leveraging AKS to manage distributed, containerized applications.
+            </p>
+            <!-- Add more paragraphs as needed -->
+        </div>    
+        <!-- Second Video -->
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/yK391RQ72GM?si=CrEK61SFD-ei3Rpe"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="text-container">
+            <p>
+                The second half of the tutorial series focuses on integrating platform-as-a-service (PaaS) services, scaling applications, and managing the lifecycle of an Azure Kubernetes Service (AKS) cluster. In part five, an Azure Service Bus namespace and queue are created to demonstrate how to integrate PaaS services with Kubernetes applications. This includes updating the Kubernetes manifest file to use the Service Bus queue and testing the application by simulating an order placement.
+            </p>
+            <p>
+                In part six, the tutorial explores scaling Kubernetes applications and infrastructure. This includes manually scaling pods, configuring pod autoscaling for the app front end, and adjusting the number of Azure VM nodes to manage the cluster's capacity. Finally, part seven covers upgrading the AKS cluster to a newer Kubernetes version, detailing steps to identify available versions, upgrade Kubernetes nodes, and validate the upgrade process. Together, these tutorials provide practical insights into scaling and maintaining a robust Kubernetes environment.
+            </p>
+            <!-- Add more paragraphs as needed -->
+        </div>
+    </section>
+      
     <!-- Footer -->
     <footer class="footer section">
 
         <div class="footer-container container d-grid">
             
             <div class="company-data">
-                <a href="../../index.html">
+                <a href="../webpages/agency.html">
                     <h2 class="logo">Liz Garcia</h2>
                 </a>
-                <p class="company-description">Liz Garcia is a Cloud Solution Architect and consultant with a rich background in software development and a passion for content creation in photos and film. With her roots in California, Liz combines technical expertise with a creative spirit, offering a unique perspective to her clients and audience alike.</p>
+                <p class="company-description">Liz Garcia is a Cloud Solution Architect and consultant with a rich background in software engineering and a passion for content creation in photos and film. With her roots in California, Liz combines technical expertise with a creative spirit, offering a unique perspective to her clients and audience alike.</p>
                 
                 <ul class="list social-media">
                     <li class="list-item">
@@ -289,18 +189,18 @@
             <div>
                 <h6 class="title footer-title">Categories</h6>
                 
-                <ul class="footer-list list">
+                <ul class="footer-list list"> 
                     <li class="list-item">
-                        <a href="../faith.html" class="list-link">Faith</a>
+                        <a href="./faith.html" class="list-link">Faith</a>
                     </li>
                     <li class="list-item">
-                        <a href="../blog.html" class="list-link">Blog</a>
+                        <a href="./lifestyle.html" class="list-link">Lifestyle</a>
                     </li>
                     <li class="list-item">
-                        <a href="../technology.html" class="list-link">Technology</a>
+                        <a href="./technology.html" class="list-link">Technology</a>
                     </li>
                     <li class="list-item">
-                        <a href="../creativecontent.html" class="list-link">Photography & Film</a>
+                        <a href="./contentcreation.html" class="list-link">Photography & Film</a>
                     </li>
                 </ul>
 
@@ -311,16 +211,16 @@
                 
                 <ul class="footer-list list">
                     <li class="list-item">
-                        <a href="../../index.html" class="list-link">Home</a>
+                        <a href="/index.html" class="list-link">Home</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="list-link">Contact me</a>
+                        <a href="../webpages/contact.html" class="list-link">Contact</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="list-link">About Me</a>
+                        <a href="./about.html" class="list-link">About</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="list-link">F.A.Q.</a>
+                        <a href="./faq.html" class="list-link">F.A.Q.</a>
                     </li>
                 </ul>
 
@@ -337,8 +237,8 @@
 
     <!-- Swiper.js -->
     <!-- <script src="./assets/js/swiper-bundle.min.js"></script> -->
-    <script src="../../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
     <!-- Custom script -->
-    <script src="../../assets/js/technology/technology.js"></script>
+    <script src="/assets/js/technology/technology.js"></script>
 </body>
 </html>

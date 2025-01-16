@@ -945,4 +945,51 @@ body.light-theme{
     color: white;
 }
 
-  
+/* Video Styling */
+/* Center the video section */
+.video-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    justify-content: center; /* Centers the videos horizontally */
+    gap: 1rem; /* Adds space between the videos */
+}
+
+/* Responsive video container */
+.video-container {
+    position: relative;
+    width: 45%; /* Adjust width for smaller videos */
+    /* max-width: 800px; Adjust as needed */
+    padding-bottom: 25%; /* aspect ratio */
+    background-color: #000; /* Fallback for loading iframe */
+    margin-bottom: 2rem; /* space below the video */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Text container with left-aligned text */
+.text-container {
+    max-width: 800px; /* Match max-width of video for alignment */
+    width: 100%;
+    padding: 0 1.5rem;
+    text-align: left;
+    margin-top: 2rem; /* Optional: additional space above the text */
+}
+
+.text-container p {
+    font-size: 1.6rem; /* Adjust as needed */
+    color: var(--light-color-alt); /* Ensure this variable is defined */
+    margin-bottom: 1rem;
+}
+
+/* Website Title */
+
+

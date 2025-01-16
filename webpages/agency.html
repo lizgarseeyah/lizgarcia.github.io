@@ -2,131 +2,123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaliCreative | Agency</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/letterL.png">
-    <!-- Remix icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- Swiper.js styles -->
-    <link rel="stylesheet" href="../css/swiper-bundle.min.css"/>
-    <link href="../assets/css/agency.css" rel="stylesheet">
+    <title>CaliCreative</title>
+    <link rel="stylesheet" href="../assets/css/agency.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="bg-white shadow-md fixed w-full z-10">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="./agency.html" class="text-xl font-bold">CaliCreative</a>
-            <nav class="space-x-4">
-                <a href="#hero" class="scroll-link">Home</a>
-                <a href="#services" class="scroll-link">Services</a>
-                <a href="#about" class="scroll-link">About</a>
-                <!-- <a href="#portfolio" class="scroll-link">Portfolio</a> -->
-                <!-- <a href="#testimonials" class="scroll-link">Testimonials</a> -->
-                <a href="../webpages/contactagency.html" class="scroll-link">Contact</a>
-            </nav>
-        </div>
+    <header>
+        <a href="../index.html">
+            <h1 class="logo">CaliCreative</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#section1">About</a></li>
+                <!-- <li><a href="#section2">Connection versus Connections.</a></li>
+                <li><a href="#section3">Forms and the Formless.</a></li> -->
+                <li><a href="#section4">Services</a></li>
+                <!-- <li><a href="#section5">Contact</a></li> -->
+                <li><a href="./contactagency.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Hero Section with Video -->
-    <section id="hero" class="h-screen relative">
-        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
-            <source src="../assets/videos/hero-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="flex items-center justify-center h-full bg-gray-900 bg-opacity-50">
-            <div class="text-center text-white">
+   <!-- Hero Section with Video -->
+   <section id="hero" class="relative">
+        <div class="hero-video">
+            <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+                <source src="../assets/videos/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-content flex items-center justify-center bg-gray-900 bg-opacity-50">
+            <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to CaliCreative</h1>
-                <p class="text-lg md:text-xl mb-6">Your trusted partner for agency support</p>
-                <a href="#services" class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700">Discover Services</a>
+                <p class="text-lg md:text-xl mb-6">Your trusted partner for agency support.</p>
+                <a href="#section4" class="discover-link"> Learn More</a>
             </div>
         </div>
     </section>
 
-<!-- About Section -->
-<section id="about" class="about-section">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-8">About</h2>
-        <p class="about-text">
-            CaliCreative is a dynamic agency delivering cutting-edge solutions in photography, videography, web design, and marketing.
-            We combine industry best practices with a creative touch to elevate your brand, capture your moments, and craft visually stunning narratives.
-            From professional sports events to weddings and beyond, CaliCreative is your partner in bringing ideas to life with precision, artistry, and strategic marketing.
-        </p>
-    </div>
-</section>
+    <!--Sections 1 thru 5 -->
 
-<!-- Services Section -->
-<section id="services" class="py-16 bg-gray-100">
-    <!-- Content -->
-</section>
+    <main>
+        <section id="section1" class="section-one">
+            <h2>About.</h2>
+            <p>CaliCreative is a dynamic agency delivering cutting-edge solutions in photography, videography, web design, and marketing.
+                We combine industry best practices with a creative touch to elevate your brand, capture your moments, and craft visually stunning narratives.
+                From professional sports events to weddings and beyond, CaliCreative is your partner in bringing ideas to life with precision, artistry, and strategic marketing.
+            </p>
+        </section>
+        
+        <section id="section2" class="section-two">
+            <h2 class="section-two-title">Connection versus Connections.</h2>
+            <p class="section-two-subtitle">
+                In a world of 8 billion people, the challenge isn’t just finding one another—it’s truly connecting.
+            </p>
+            <p class="section-two-description">
+                We focus on delivering the unique, the personal, and the meaningful—whether that’s people to hard-to-reach places or ideas to life through art and storytelling.
 
-<!-- Portfolio Section -->
-<section id="portfolio" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-8">Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded shadow">
-                <img src="../assets/images/agency/photography_work.jpg" alt="Project 1" class="mb-4">
-                <h3 class="text-xl font-semibold mb-2">Photography & Film</h3>
-                <p>Capture every moment with stunning precision and artistry. From professional sports events to weddings and portraits, we deliver high-quality photography and videography tailored to your unique needs. Whether it's action-packed highlights or intimate moments, our work reflects creativity and excellence.</p>
-                <a href="./creativecontent.html" class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</a>
+                At CaliCreative, connection isn’t just about networking or numbers; it’s about depth. We believe in crafting authentic narratives that resonate, creating visuals that captivate, and building strategies that truly bring people together. Because in the end, it’s not about how many connections we make, but the quality of the connection that defines us.
+            </p>
+            <a href="./contactagency.html" class="section-two-button">Learn more</a>
+        </section>
+        
+        <section id="section3" class="section-three">
+            <div class="section-three-video">
+                <video autoplay muted loop>
+                    <source src="../assets/videos/soccer.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <div class="bg-white p-6 rounded shadow">
-                <img src="../assets/images/agency/web_dev.jpg" alt="Project 2" class="mb-4">
-                <h3 class="text-xl font-semibold mb-2">Web Design & Development</h3>
-                <p>Transform your online presence with visually engaging and functional websites. We create user-centric designs that reflect your brand identity, combining cutting-edge aesthetics with seamless functionality to make a lasting digital impression.</p>
-                <a href="./creativecontent.html" class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</a>
+            <div class="section-three-content">
+                <h2>Forms and the Formless.</h2>
+                <p>We strive to capture both: the forms that ground us and the formless that inspires us.</p>
+                <a href="./contactagency.html" class="section-three-button">Learn more</a>
             </div>
-            <div class="bg-white p-6 rounded shadow">
-                <img src="../assets/images/agency/baseball.jpg" alt="Project 3" class="mb-4">
-                <h3 class="text-xl font-semibold mb-2">Social Media Strategy & Marketing</h3>
-                <p>Elevate your brand with a comprehensive social media approach. We craft customized strategies, engaging content, and targeted marketing campaigns that connect with your audience and amplify your online reach.</p>
-                <a href="./creativecontent.html" class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</a>
-            </div>
-            <div class="bg-white p-6 rounded shadow">
-                <img src="../assets/images/agency/baseball.jpg" alt="Project 3" class="mb-4">
-                <h3 class="text-xl font-semibold mb-2">Content Ideation & Collaboration</h3>
-                <p>Bring your ideas to life with innovative concepts and expert collaboration. From ideation to execution, we partner with you to create compelling visuals, videos, and narratives that align with your vision and goals.</p>
-                <a href="./creativecontent.html" class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</a>
-            </div>
-            <div class="bg-white p-6 rounded shadow">
-                <img src="../assets/images/agency/baseball.jpg" alt="Project 3" class="mb-4">
-                <h3 class="text-xl font-semibold mb-2">Graphic Design & Editing</h3>
-                <p>Enhance your brand’s visual impact with professional graphic design and editing services. We design stunning visuals and fine-tune every detail to ensure your content stands out across all platforms.</p>
-                <a href="./creativecontent.html" class="px-4 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700">Read More</a>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>  
 
-    <!-- Testimonials Section -->
-    <!-- <section id="testimonials" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-6 border rounded shadow">
-                    <p class="italic">"CaliCreative provided exceptional service! Highly recommended."</p>
-                    <h3 class="text-lg font-semibold mt-4">- Client Name</h3>
-                </div>
-                <div class="p-6 border rounded shadow">
-                    <p class="italic">"Amazing results and a great team to work with."</p>
-                    <h3 class="text-lg font-semibold mt-4">- Another Client</h3>
-                </div>
+        <section id="section5" class="section-five">
+            <div class="section-five-content">
+                <h2 class="section-five-title">A note.</h2>
+                <p class="section-five-text">
+                    Let us know how we can help:
+                </p>
+                <ul class="section-five-list section-five-text">
+                    <li>Photography</li>
+                    <li>Videography</li>
+                    <li>Editing</li>
+                    <li>Graphic Design</li>
+                    <li>Web Development</li>
+                    <li>Social Media Strategy</li>
+                    <li>Branding</li>
+                    <li>Marketing</li>
+                </ul>
             </div>
-        </div> 
-    </section> -->
+        </section>   
+        
+        <section id="section4" class="section-four">
+            <div class="split-left"> 
+                <h2 class="section-four-title">This is it.</h2>
+                <a href="./contactagency.html" class="section-four-button">Contact us</a>
+            </div>
+            <div class="split-right">
+                <p class="section-four-text">
+                    From capturing breathtaking moments through photography and videography to crafting innovative web designs and strategic marketing campaigns, CaliCreative embodies the same adventurous and daring mindset. Just as that warehouse once nurtured groundbreaking ideas, our agency thrives on creativity, precision, and the belief that every project has the power to elevate, inspire, and connect.
+                </p>
+            </div>
+        </section>     
+        
 
-    <!-- Contact Section -->
-    <footer id="contact" class="py-16 bg-gray-800 text-white">
-        <div class="container mx-auto text-center">
-            <p class="mb-4">
-                Contact us: <a href="../webpages/contactagency.html" class="underline" target="_blank" rel="noopener">Visit our Contact Page</a>
-            </p>            
-            <p>&copy; 2025 CaliCreative. All rights reserved.</p>
-        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CaliCreative</p>
+        <p class="mb-4">
+            Visit our <a href="./contactagency.html" class="underline" target="_blank" rel="noopener">Contact Page</a>
+        </p>   
     </footer>
 
-    <script src="../assets/js/agency.js"></script>
+    <script src="../assets/css/agency.css"></script>
 </body>
 </html>

@@ -3,11 +3,16 @@
 
 /* Custom properties */
 :root {
-    --primary-color: #4b3832;
-    --secondary-color: #8e6e53;
-    --accent-color: #c89f94;
-    --light-color: #f5f5f5;
-    --dark-color: #2b211e;
+    --light-color: #fff;
+    --light-color-alt: #afb6cd;
+    --primary-color: #131417;
+    --secondary-color: #252830;
+    --accent-color: #ffb302;/*#4fcf70;*/
+    --hover-light-color: var(--light-color);
+    --hover-dark-color: var(--primary-color);
+    --gradient-color: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+    --transparent-light-color: rgba(255, 255, 255, 0.05);
+    --transparent-dark-color: rgba(0, 0, 0, 0.75);
     --font-family: 'Poppins', sans-serif;
     --font-size-sm: 1.2rem;
     --font-size-md: 1.8rem;
@@ -18,7 +23,6 @@
     --container-width: 1200px;
     --transition-speed: 0.3s;
 }
-
 /* Base styles */
 * {
     margin: 0;
@@ -27,214 +31,501 @@
 }
 
 body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
     font-family: var(--font-family);
     font-size: var(--font-size-sm);
-    color: var(--dark-color);
-    background-color: var(--light-color);
+    color: var(--light-color-alt);
+    background-color: var(--primary-color);
     line-height: 1.6;
     transition: background-color var(--transition-speed), color var(--transition-speed);
+
 }
 
-.container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-h1, h2, h3 {
-    color: var(--dark-color);
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-h1 {
-    font-size: var(--font-size-xl);
-}
-
-h2 {
-    font-size: var(--font-size-lg);
-}
-
-p {
-    margin-bottom: 1.5rem;
-}
-
-a {
-    text-decoration: none;
-    color: var(--accent-color);
-    transition: color var(--transition-speed);
-}
-
-a:hover {
-    color: darken(var(--accent-color), 10%);
-}
-
-button {
-    background-color: var(--secondary-color);
-    color: var(--light-color);
-    border: none;
-    padding: var(--button-padding);
-    font-size: var(--font-size-md);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color var(--transition-speed);
-}
-
-button:hover {
-    background-color: darken(var(--secondary-color), 10%);
-}
-
-/* Header */
 header {
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    padding: 1.5rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background: #252830;
+    color: #fff;
+    padding: 1rem;
+    text-align: left;
 }
 
-header .container {
+header nav ul {
+    list-style: none;
+    padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0;
 }
 
-header nav {
-    display: flex;
-    gap: 2rem;
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
 }
 
 header a {
-    color: var(--light-color);
-    font-size: var(--font-size-sm);
-    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    padding: 2rem;
+    margin: 1rem 0;
+    background: #f4f4f4;
+    border-radius: 8px; /* 8px make section's edges rounded */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: -webkit-sticky; /* For Safari */
+    position: sticky; /* Standard */
+    top: 0; /* Sticks to the top of the viewport */
 }
 
 /* Hero Section */
 #hero {
-    background-color: var(--primary-color);
+    background: none;
     color: var(--light-color);
     text-align: center;
-    padding: 6rem 2rem;
-}
-
-#hero video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
-}
-
-#hero .overlay {
-    position: relative;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
     padding: 2rem;
 }
 
+#hero {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: unset;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
 #hero h1 {
+    color: black;
     font-size: var(--font-size-lg);
     margin-bottom: 1rem;
 }
 
 #hero p {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-sm);
     margin-bottom: 2rem;
+    color: #333 /* text */
 }
 
 #hero button {
     background-color: var(--accent-color);
-    color: var(--dark-color);
+    color: var(--primary-color);
 }
 
-/* Section */
-.section {
-    padding: var(--section-padding);
-    text-align: center;
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Set the container width */
+    height: 100%; /* Set the container height */
+    object-fit: cover;
+    z-index: 0;
+    overflow: hidden;
 }
 
-.section h2 {
-    font-size: var(--font-size-lg);
+.hero-video video {
+    top: 0;
+    left: 0;
+    width: 100%; /* Scale the video to the container */
+    height: 100%; /* Ensure it fills the container */
+    object-fit: cover; /* Make sure it maintains the aspect ratio */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* Ensure it stays above the video */
+    max-width: 500px; /* Limit the maximum size */
+    padding: 1.5rem; /* Add padding for spacing inside the container */
+    text-align: center; /* Align text inside the container */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background for contrast */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.discover-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+.discover-link:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+
+/* Section One */
+.section-one {
+    padding: 4rem 2rem; /*padding all around*/
+    background-color: var(--light-color); /*??*/
+    background: #f8f8f8; 
+    color: #333;
+    text-align: center; /*centers text */
+}
+.section-one h2 {
+    text-align: center; /* Centers about title */
+    font-size: 3rem;
+    color: #333;
+}
+
+/* Section Two */
+.section-two {
+    position: relative; /* Make the section a positioning context */
+    background: #f8f8f8;
+    background-image: url(../images/agency/web_dev.jpg);
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+    min-height: 400px; /* Sets a minimum height for the section */
+    color: #fff; /* make text white for better contrast */
+    display: flex;
+    flex-direction: column; /*Stack content vertically */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 1;
+}
+.section-two::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black overlay with 50% opacity */
+    z-index: -1; /* Place it behind the content */
+    pointer-events: none; /* Ensure it doesn’t block interactions */
+}
+
+.section-two-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+
+}
+.section-two-subtitle {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.section-two-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.section-two-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+.section-two-button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Section Three */
+
+.section-three {
+    background: #ddddff;
+    color: #333;
+    position: relative; /* Enable layering for the overlay and content */
+    background-image: url('../videos/soccer.mp4'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px; /* Adjust height as needed */
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center; /* Vertically center content */
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.section-three::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    z-index: 0; /* Place behind the content */
+}
+
+.section-three-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Place behind the content */
+    overflow: hidden;
+}
+
+.section-three-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire section */
+}
+
+.section-three-content {
+    position: relative;
+    z-index: 1; /* Place above the overlay */
+    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+    padding: 2rem;
+    max-width: 300px; /* Adjust width as needed */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center; /* Center align text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.section-three-content h2 {
+    font-size: 1.8rem; /* Adjust font size as needed */
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+.section-three-content p {
+    font-size: 1rem;
+    color: #555;
     margin-bottom: 1.5rem;
 }
 
-.section p {
-    margin-bottom: 2rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+.section-three-content a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.section button {
-    margin-top: 1rem;
+.section-three-content a:hover {
+    background-color: #555;
 }
 
-/* About Section */
-#about {
-    background-color: var(--light-color);
+
+/* Section Four */
+.section-four {
+    background: #fff;
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 5rem; /*Adjust this value as needed for bottom section*/
+
 }
 
-/* Portfolio Section */
-#portfolio {
-    background-color: var(--light-color);
-}
-
-.portfolio-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-top: 2rem;
-}
-
-.portfolio-item {
-    background-color: var(--light-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.split-left, .split-right {
+    flex: 1;
+    min-width: 50%;
     padding: 2rem;
-    border-radius: 8px;
+}
+
+.split-left {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.split-right {
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: left;
 }
 
-.portfolio-item img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 4px;
+.section-four-title {
+    font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 1rem;
 }
 
-/* Footer */
-footer {
-    background-color: var(--dark-color);
-    color: var(--light-color);
-    text-align: center;
-    padding: 2rem 0;
+
+.section-four-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 80%;
 }
 
-footer a {
-    color: var(--accent-color);
+.section-four-button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.section-four-button:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+/* Section Five */
+.section-five {
+    background: #ffddff;
+    color: #333;
+    margin-bottom: 1rem; /*Adjust this value as needed for bottom section*/
+    display: flex;
+    align-items: left;
+    justify-content: flex-start;
+    position: relative;
+    padding: 2rem;
+    height: auto; /* Ensure the section adapts to content */
+    overflow: hidden;
+    width: 100%;    
+    z-index: 1;
+    flex-wrap: wrap;
+    background: #f8f8f8;
+    background-image: url(../images/agency/photography_work.jpg);
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+    flex-direction: column; /*Stack content vertically */
+}
+
+.section-five::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black overlay with 50% opacity */
+    z-index: -1; /* Place it behind the content */
+    pointer-events: none; /* Ensure it doesn’t block interactions */
+}
+
+.section-five-content {
+    position: relative;
+    z-index: 1; /* Ensure content is on top */
+    flex: 0 0 50%; /* Make the content box take 50% of the section width */
+    padding: 2rem;
+    color: #000; /* Ensure readability */
+    background-color: rgba(255, 255, 255, 0.9); /* Optional: Add slight white background to content */
+    border-radius: 8px; /* Rounded corners for a polished look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    max-width: 600px; /* Restrict the width */
+    margin: 2rem; /* Center the content horizontally */
+}
+
+.section-five-content a {
+    color: #000;
     text-decoration: underline;
+    transition: color 0.3s;
 }
 
-/* Media Queries */
-@media (min-width: 768px) {
-    header nav {
-        gap: 3rem;
-    }
-
-    #hero {
-        padding: 8rem 2rem;
-    }
-
-    .section h2 {
-        font-size: var(--font-size-xl);
-    }
+.section-five-content a:hover {
+    color: #555;
 }
 
-@media (min-width: 1024px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
+.section-five-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+
+.section-five-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.section-five-list {
+    columns: 2; /* Divide the list into 2 columns */
+    column-gap: 20px; /* Space between columns */
+    list-style-position: inside; /* Align bullet points inside the columns */
+    margin: 0;
+    padding: 0;
+}
+
+.section-five-list li {
+    margin-bottom: 8px;
+}
+
+
+
+footer {
+    background: #252830;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* Footer link default state */
+footer a {
+    color: #007BFF; /* Change to your desired color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Footer link hover state */
+footer a:hover {
+    color: #0056b3; /* Change to a darker shade on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Footer link focus state */
+footer a:focus {
+    outline: 2px dashed #0056b3; /* Optional: Add focus outline for accessibility */
+}
+
+
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+    }
+
+    section {
+        padding: 1rem;
     }
 }

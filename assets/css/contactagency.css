@@ -1131,28 +1131,31 @@ input[type="checkbox"] {
     margin-right: 0.5rem;
 }
 
+/* Checkbox Grid */
 .checkbox-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    border: 1px solid var(--light-color);
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    text-align: left; /* Aligns all content inside the grid to the left */
+    grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
+    gap: 1rem; /* Space between rows and columns */
+    align-items: start; /* Ensure all items align to the top of their grid cell */
 }
 
-.checkbox-grid legend {
-    font-weight: bold;
-    margin-bottom: 1rem;
-    grid-column: span 3;
-    text-align: left; /* Align legend text to the left */
-}
-
+/* Checkbox and Label */
 .checkbox-grid label {
-    display: flex;
-    align-items: center;
-    font-size: var(--font-size-sm);
-    justify-content: start; /* Ensures the checkbox and label are aligned to the left */
+    display: flex; /* Use Flexbox for alignment */
+    align-items: center; /* Vertically align checkbox and text */
+    gap: 0.5rem; /* Space between checkbox and text */
+    line-height: 1.5; /* Consistent spacing for multi-line text */
+    height: 3rem; /* Set a fixed height for all labels (adjust as needed) */
+}
+
+/* Checkbox Input */
+.checkbox-grid input[type="checkbox"] {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    flex-shrink: 0; /* Prevent checkbox from resizing */
+    align-self: center; /* Ensure checkbox aligns vertically in the center of the label */
+    width: 16px; /* Standard width */
+    height: 16px; /* Standard height */
 }
 
 
