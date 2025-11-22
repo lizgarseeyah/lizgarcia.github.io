@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Workflow Dashboard</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js for Beautiful Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: white; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        
+        /* Animated Background */
+        .mesh-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; animation: float 10s infinite ease-in-out; }
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Toggle Animations */
+        .chat-enter-active { opacity: 1; transform: translateY(0) scale(1); transition: all 0.3s ease-out; }
+        .chat-exit-active { opacity: 0; transform: translateY(20px) scale(0.95); transition: all 0.2s ease-in; }
+
+        /* Page Transitions */
+        .page-transition { transition: opacity 0.3s ease-in-out; }
+        .hidden-page { display: none; opacity: 0; }
+        .visible-page { display: block; opacity: 1; }
+        
+        /* Checkbox Styles */
+        input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex relative">
+
+    <!-- Background Effects -->
+    <div class="mesh-bg">
+        <div class="blob bg-purple-900 w-[600px] h-[600px] -top-20 -left-20"></div>
+        <div class="blob bg-blue-900 w-[500px] h-[500px] bottom-0 right-0 animation-delay-2000"></div>
+        <div class="blob bg-indigo-900 w-[300px] h-[300px] top-1/3 left-1/3 opacity-30"></div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-20 lg:w-64 glass-panel flex flex-col justify-between border-r border-white/5 z-20 hidden md:flex">
+        <div class="p-6">
+            <div class="flex items-center gap-3 mb-10 text-indigo-400 cursor-pointer" onclick="showPage('dashboard')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <span class="text-xl font-bold tracking-wide hidden lg:block text-white">CLOUD9 Ops</span>
+            </div>
+            
+            <nav class="space-y-2 text-sm">
+                <button onclick="showPage('detail-spirituality')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>🙏</span> <span class="hidden lg:block font-medium">Spirituality</span>
+                </button>
+                <button onclick="showPage('dashboard')" class="w-full flex items-center gap-4 p-3 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 text-left">
+                    <span>📊</span> <span class="hidden lg:block font-medium">Overview</span>
+                </button>
+                <button onclick="showPage('detail-todo')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>✅</span> <span class="hidden lg:block font-medium">To-Do List</span>
+                </button>
+                <button onclick="showPage('detail-stocks')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>📈</span> <span class="hidden lg:block font-medium">Stocks/Crypto</span>
+                </button>
+                <button onclick="showPage('detail-jobs')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>💼</span> <span class="hidden lg:block font-medium">Job Applications</span>
+                </button>
+                <button onclick="showPage('detail-marketing')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>📢</span> <span class="hidden lg:block font-medium">Marketing</span>
+                </button>
+                <button onclick="showPage('detail-microsoft')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>💻</span> <span class="hidden lg:block font-medium">MS Projects</span>
+                </button>
+                <button onclick="showPage('detail-future')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left">
+                    <span>🔮</span> <span class="hidden lg:block font-medium">Future</span>
+                </button>
+            </nav>
+        </div>
+        
+        <div class="p-6 border-t border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 p-[2px]">
+                    <div class="w-full h-full rounded-full bg-black flex items-center justify-center text-xs font-bold">LG</div>
+                </div>
+                <div class="hidden lg:block">
+                    <p class="text-sm font-bold text-white">Liz Garcia</p>
+                    <p class="text-xs text-gray-500">Pro Account</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+        
+        <!-- Top Bar -->
+        <header class="h-20 glass-panel border-b border-white/5 flex items-center justify-between px-8 shrink-0">
+            <div>
+                <h1 class="text-2xl font-bold text-white">Good Morning, Liz</h1>
+                <p class="text-sm text-gray-400">Here's what's happening across your workflow today.</p>
+            </div>
+            <div class="flex gap-4">
+                <button class="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 transition relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- PAGES CONTAINER -->
+        <div class="flex-1 relative overflow-hidden">
+            
+            <!-- PAGE: DASHBOARD (DEFAULT VIEW) -->
+            <div id="page-dashboard" class="absolute inset-0 overflow-y-auto custom-scrollbar p-8 space-y-12 visible-page page-transition">
+                
+                <!-- 0. SPIRITUALITY SUMMARY -->
+                <section id="section-spirituality">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">Spirituality & Faith</h2>
+                        <button onclick="showPage('detail-spirituality')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300 hover:text-white border border-white/10">
+                            Open Tracker <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card p-6 rounded-2xl flex items-center justify-between border-l-4 border-yellow-500">
+                            <div>
+                                <p class="text-gray-400 text-sm font-bold mb-1">DAILY PRAYER</p>
+                                <h3 class="text-xl font-bold text-white">Morning Rosary</h3>
+                            </div>
+                            <input type="checkbox" class="w-6 h-6 rounded border-gray-600 text-yellow-500 focus:ring-yellow-500 bg-black/50">
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl flex items-center justify-between border-l-4 border-blue-500">
+                             <div>
+                                <p class="text-gray-400 text-sm font-bold mb-1">READING</p>
+                                <h3 class="text-xl font-bold text-white">Daily Gospel</h3>
+                            </div>
+                            <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded">Luke 1:26-38</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 1. OVERVIEW -->
+                <section id="section-overview">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">1. Overview</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="text-gray-400 text-sm font-medium mb-2">Total Net Worth</div>
+                            <div class="flex items-end justify-between">
+                                <div class="text-3xl font-bold text-white">$142,205</div>
+                                <div class="text-green-400 text-sm font-bold bg-green-400/10 px-2 py-1 rounded-lg">+5.4%</div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="text-gray-400 text-sm font-medium mb-2">Active Applications</div>
+                            <div class="flex items-end justify-between">
+                                <div class="text-3xl font-bold text-white">12</div>
+                                <div class="text-blue-400 text-sm font-bold bg-blue-400/10 px-2 py-1 rounded-lg">3 Interviews</div>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="text-gray-400 text-sm font-medium mb-2">Content Reach</div>
+                            <div class="flex items-end justify-between">
+                                <div class="text-3xl font-bold text-white">8.5k</div>
+                                <div class="text-purple-400 text-sm font-bold bg-purple-400/10 px-2 py-1 rounded-lg">+12%</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. TO-DO LIST (NEW SECTION) -->
+                <section id="section-todo">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">2. Daily Tasks</h2>
+                        <button onclick="showPage('detail-todo')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300 hover:text-white border border-white/10">
+                            Manage Tasks <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="space-y-3">
+                            <label class="flex items-center space-x-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-black/50">
+                                <span class="text-gray-300">Clean room</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-black/50">
+                                <span class="text-gray-300">Pay electricity bill</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-black/50">
+                                <span class="text-gray-300">Schedule doctor's appointment</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. STOCKS PREVIEW -->
+                <section id="section-stocks">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">3. Stocks & Crypto</h2>
+                        <button onclick="showPage('detail-stocks')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300 hover:text-white border border-white/10">
+                            Analytics <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-1 glass-card rounded-2xl p-6">
+                            <h3 class="text-sm font-bold text-gray-400 mb-4">Portfolio Assets</h3>
+                            <div id="stock-list" class="space-y-3"></div>
+                        </div>
+                        <div class="lg:col-span-2 glass-card rounded-2xl p-6">
+                            <h3 class="text-sm font-bold text-gray-400 mb-4">Performance History (YTD)</h3>
+                            <div class="h-64 w-full"><canvas id="stocksChart"></canvas></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 4. JOB APPLICATIONS -->
+                <section id="section-jobs">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">4. Job Application Process</h2>
+                        <button onclick="showPage('detail-jobs')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300 hover:text-white border border-white/10">
+                            Kanban Board <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-sm font-bold text-gray-400 mb-4">Active Pipeline</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border-l-4 border-yellow-500">
+                                    <div><div class="font-bold">Senior PM - Google</div><div class="text-xs text-gray-400">Applied 2 days ago</div></div>
+                                    <span class="text-xs bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded">Resume Sent</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border-l-4 border-blue-500">
+                                    <div><div class="font-bold">DevRel - Vercel</div><div class="text-xs text-gray-400">Interview tomorrow 2pm</div></div>
+                                    <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded">Interviewing</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6">
+                            <h3 class="text-sm font-bold text-gray-400 mb-4">Application Funnel</h3>
+                            <div class="h-64 w-full flex justify-center"><canvas id="jobsChart"></canvas></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. MARKETING -->
+                <section id="section-marketing">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">5. Content Creation / Marketing</h2>
+                        <button onclick="showPage('detail-marketing')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300 hover:text-white border border-white/10">
+                            Full Calendar <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                            <div class="w-16 h-16 rounded-full bg-pink-600/20 flex items-center justify-center text-2xl mb-2">📸</div>
+                            <div class="text-2xl font-bold">12.5K</div>
+                            <div class="text-xs text-gray-400">Instagram Followers</div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                            <div class="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center text-2xl mb-2">💼</div>
+                            <div class="text-2xl font-bold">5.2K</div>
+                            <div class="text-xs text-gray-400">LinkedIn Connections</div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                            <div class="w-16 h-16 rounded-full bg-red-600/20 flex items-center justify-center text-2xl mb-2">📺</div>
+                            <div class="text-2xl font-bold">1.1K</div>
+                            <div class="text-xs text-gray-400">YouTube Subs</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. MICROSOFT PROJECTS -->
+                <section id="section-microsoft">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-white">6. Microsoft Job Projects</h2>
+                        <button onclick="showPage('detail-microsoft')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300 hover:text-white border border-white/10">
+                            Project Details <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                    <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="glass-card p-5 rounded-2xl flex items-center justify-between border-l-4 border-orange-500">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center text-2xl">⚡</div>
+                                <div><h3 class="font-bold text-lg">Internal MS Flow Setup</h3><p class="text-sm text-gray-400">Due: Tomorrow</p></div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-xs font-bold">IN PROGRESS</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. FUTURE PROJECTS -->
+                <section id="section-future" class="pb-24 mt-12">
+                    <h2 class="text-xl font-bold text-white mb-6">7. Future Projects</h2>
+                    <div class="glass-card p-8 rounded-2xl border-2 border-dashed border-white/10 flex flex-col items-center justify-center text-center h-48 hover:border-indigo-500/50 transition cursor-pointer group" onclick="showPage('detail-future')">
+                        <div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Add New Project</h3>
+                        <p class="text-sm text-gray-500 mt-1">Plan your next big Microsoft or personal initiative.</p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- == DETAIL PAGES (Hidden by default) == -->
+            
+            <!-- 1. SPIRITUALITY DETAIL PAGE -->
+            <div id="page-detail-spirituality" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back to Dashboard</button>
+                <h1 class="text-3xl font-bold text-white mb-6">Spirituality & Faith</h1>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white">Confession Tracker</h3>
+                            <span id="sin-status" class="text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-400 font-bold">GRACE STATE</span>
+                        </div>
+                        <textarea class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-sm text-gray-300 focus:outline-none focus:border-purple-500 mb-4" rows="4" placeholder="Log sins for next confession (Private)..."></textarea>
+                        <button class="w-full bg-purple-600 hover:bg-purple-500 text-white py-2 rounded-xl font-bold transition">Log & Update Status</button>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                         <h3 class="text-xl font-bold text-white mb-4">Rosary Tracker</h3>
+                         <div class="flex justify-center items-center h-32">
+                             <div class="text-center">
+                                 <span class="text-4xl font-bold text-yellow-400">12</span>
+                                 <p class="text-gray-500 text-sm">Rosaries this Month</p>
+                             </div>
+                         </div>
+                         <div class="grid grid-cols-5 gap-2 text-center">
+                             <div class="aspect-square bg-yellow-500/20 rounded flex items-center justify-center text-yellow-500 text-xs">M</div>
+                             <div class="aspect-square bg-white/5 rounded flex items-center justify-center text-gray-500 text-xs">T</div>
+                             <div class="aspect-square bg-yellow-500/20 rounded flex items-center justify-center text-yellow-500 text-xs">W</div>
+                             <div class="aspect-square bg-yellow-500/20 rounded flex items-center justify-center text-yellow-500 text-xs">T</div>
+                             <div class="aspect-square bg-white/5 rounded flex items-center justify-center text-gray-500 text-xs">F</div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- 2. TO-DO LIST DETAIL PAGE -->
+             <div id="page-detail-todo" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back to Dashboard</button>
+                <h1 class="text-3xl font-bold text-white mb-6">Detailed Tasks & Reminders</h1>
+                <div class="glass-card p-8 rounded-2xl max-w-3xl mx-auto">
+                     <h3 class="text-xl font-bold text-white mb-6">Active Tasks</h3>
+                     <div class="space-y-4">
+                        <label class="flex items-center space-x-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+                            <input type="checkbox" class="w-6 h-6 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-black/50">
+                            <div class="flex-1"><span class="text-gray-200 text-lg font-medium">Clean room</span><p class="text-xs text-gray-500">Housekeeping</p></div>
+                            <span class="text-xs bg-white/10 px-2 py-1 rounded text-gray-400">Today</span>
+                        </label>
+                        <label class="flex items-center space-x-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+                            <input type="checkbox" class="w-6 h-6 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-black/50">
+                            <div class="flex-1"><span class="text-gray-200 text-lg font-medium">Pay electricity bill</span><p class="text-xs text-gray-500">Finance</p></div>
+                            <span class="text-xs bg-red-500/20 text-red-300 px-2 py-1 rounded">Overdue</span>
+                        </label>
+                        <label class="flex items-center space-x-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+                            <input type="checkbox" class="w-6 h-6 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 bg-black/50">
+                            <div class="flex-1"><span class="text-gray-200 text-lg font-medium">Schedule doctor's appointment</span><p class="text-xs text-gray-500">Health</p></div>
+                            <span class="text-xs bg-white/10 px-2 py-1 rounded text-gray-400">Tomorrow</span>
+                        </label>
+                     </div>
+                     <button class="mt-6 w-full border-2 border-dashed border-white/10 text-gray-400 py-3 rounded-xl hover:border-indigo-500 hover:text-indigo-400 transition">+ Add New Task</button>
+                </div>
+            </div>
+
+            <!-- 3. STOCKS DETAIL PAGE -->
+            <div id="page-detail-stocks" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
+                <h1 class="text-3xl font-bold text-white mb-6">Stocks & Crypto Portfolio</h1>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h3 class="text-lg font-bold mb-4">Quick Trade</h3>
+                            <div class="space-y-3">
+                                <input type="text" placeholder="Ticker (e.g. AAPL)" class="w-full bg-black/30 border border-white/10 rounded-lg p-3 text-white text-sm">
+                                <input type="number" placeholder="Quantity" class="w-full bg-black/30 border border-white/10 rounded-lg p-3 text-white text-sm">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded-lg transition">BUY</button>
+                                    <button class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 rounded-lg transition">SELL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 glass-card p-6 rounded-2xl">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-bold">Holdings</h3>
+                            <button class="text-sm text-indigo-400">Refresh</button>
+                        </div>
+                        <div class="space-y-2">
+                             <div class="grid grid-cols-4 text-xs text-gray-500 font-bold pb-2 border-b border-white/10">
+                                 <span>ASSET</span>
+                                 <span class="text-right">PRICE</span>
+                                 <span class="text-right">CHANGE</span>
+                                 <span class="text-right">VALUE</span>
+                             </div>
+                             <div class="grid grid-cols-4 text-sm items-center py-3 border-b border-white/5">
+                                 <span class="font-bold">BTC</span>
+                                 <span class="text-right font-mono">$64,200</span>
+                                 <span class="text-right font-mono text-green-400">+3.2%</span>
+                                 <span class="text-right font-mono">$12,400</span>
+                             </div>
+                             <div class="grid grid-cols-4 text-sm items-center py-3 border-b border-white/5">
+                                 <span class="font-bold">NVDA</span>
+                                 <span class="text-right font-mono">$890</span>
+                                 <span class="text-right font-mono text-green-400">+2.1%</span>
+                                 <span class="text-right font-mono">$8,900</span>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. JOB APPLICATIONS DETAIL PAGE -->
+            <div id="page-detail-jobs" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
+                <div class="flex justify-between items-center mb-6">
+                     <h1 class="text-3xl font-bold text-white">Job Applications</h1>
+                     <button class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-xl text-sm font-bold shadow-lg transition">+ Add Application</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-[calc(100vh-200px)]">
+                    <div class="glass-card p-4 rounded-xl flex flex-col">
+                        <h3 class="font-bold text-gray-400 mb-4 uppercase text-xs tracking-wider border-b border-white/10 pb-2">To Apply</h3>
+                        <div class="space-y-3 overflow-y-auto custom-scrollbar flex-1">
+                            <div class="bg-white/5 p-3 rounded-lg border border-white/5 hover:border-white/20 cursor-move">
+                                <div class="font-bold">Netflix</div>
+                                <div class="text-xs text-gray-400 mt-1">Senior Engineer</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex flex-col">
+                        <h3 class="font-bold text-yellow-400 mb-4 uppercase text-xs tracking-wider border-b border-white/10 pb-2">Applied</h3>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-yellow-500 mb-2"><div class="font-bold">Google</div><div class="text-xs text-gray-400 mt-1">PM Role</div></div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex flex-col">
+                        <h3 class="font-bold text-blue-400 mb-4 uppercase text-xs tracking-wider border-b border-white/10 pb-2">Interviewing</h3>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-blue-500 mb-2"><div class="font-bold">Vercel</div><div class="text-xs text-gray-400 mt-1">DevRel</div></div>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl flex flex-col">
+                        <h3 class="font-bold text-green-400 mb-4 uppercase text-xs tracking-wider border-b border-white/10 pb-2">Done</h3>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-green-500 opacity-75"><div class="font-bold">Startup</div><div class="text-xs text-gray-400 mt-1">Tech Lead</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. MARKETING DETAIL PAGE -->
+            <div id="page-detail-marketing" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
+                <h1 class="text-3xl font-bold text-white mb-6">Marketing & Content Studio</h1>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold mb-4">Create Content</h3>
+                        <div class="space-y-4">
+                            <textarea class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-pink-500" rows="4" placeholder="Write caption or prompt..."></textarea>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-white/10 hover:bg-white/20 py-2 rounded-lg text-xs">Import Media</button>
+                                <button class="flex-1 bg-pink-600 hover:bg-pink-500 py-2 rounded-lg text-xs font-bold">Post Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 glass-card p-6 rounded-2xl">
+                        <h3 class="text-lg font-bold mb-4">Schedule</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                                <div class="flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-pink-500"></div><div><div class="font-bold text-sm">Instagram: Day in Life</div><div class="text-xs text-gray-500">Tomorrow, 9:00 AM</div></div></div>
+                                <button class="text-xs text-gray-400 hover:text-white">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. MICROSOFT PROJECTS DETAIL PAGE -->
+            <div id="page-detail-microsoft" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
+                <h1 class="text-3xl font-bold text-white mb-6">Microsoft Projects Console</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition text-left"><span class="block text-2xl mb-2">📧</span><span class="font-bold">Respond to Email</span></button>
+                    <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition text-left"><span class="block text-2xl mb-2">💬</span><span class="font-bold">Teams Message</span></button>
+                    <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition text-left"><span class="block text-2xl mb-2">📅</span><span class="font-bold">Meetings Today</span></button>
+                    <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition text-left"><span class="block text-2xl mb-2">⏱️</span><span class="font-bold">Log Hours</span></button>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold mb-4">Active Dispatches & Milestones</h3>
+                    <table class="w-full text-left text-sm text-gray-400">
+                        <thead class="text-xs uppercase border-b border-white/10">
+                            <tr><th class="pb-2">Project</th><th class="pb-2">Milestone</th><th class="pb-2">Status</th><th class="pb-2">Tracker</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="group hover:bg-white/5 transition"><td class="py-3 font-bold text-white">Internal MS Flow</td><td>Phase 1 Config</td><td><span class="text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded text-[10px]">IN PROGRESS</span></td><td><button class="text-blue-400 hover:underline">Connect</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+             <!-- 7. FUTURE PROJECTS DETAIL PAGE -->
+             <div id="page-detail-future" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+                <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
+                <h1 class="text-3xl font-bold text-white mb-6">Future Projects Sandbox</h1>
+                <div class="glass-card p-8 rounded-2xl border-2 border-dashed border-white/10 h-full flex items-center justify-center">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2">Brainstorming Area</h3>
+                        <p class="text-gray-400">Drag and drop new ideas here.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- AI Assistant Floating Interface (Same as before) -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+        <div id="chat-window" class="glass-card w-80 h-[500px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl hidden flex-col transition-all duration-300 origin-bottom-right">
+            <div class="p-4 border-b border-white/5 bg-black/20 flex justify-between items-center">
+                <div><h3 class="font-bold">AI Assistant</h3><p id="chat-status" class="text-xs text-indigo-400">MS Copilot Mode</p></div>
+                <div class="flex gap-1 bg-white/5 p-1 rounded-lg">
+                    <button onclick="setChatMode('copilot')" id="btn-copilot" class="px-3 py-1 text-xs rounded-md bg-indigo-600 text-white transition">Copilot</button>
+                    <button onclick="setChatMode('gemini')" id="btn-gemini" class="px-3 py-1 text-xs rounded-md text-gray-400 hover:text-white transition">Gemini</button>
+                </div>
+            </div>
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-black/20">
+                <div class="flex justify-start"><div class="bg-white/10 text-gray-200 p-3 rounded-2xl rounded-tl-sm max-w-[85%] text-sm">Hello Liz. I'm connected to your Microsoft Graph and Gemini AI. How can I help?</div></div>
+            </div>
+            <div class="p-4 border-t border-white/5 bg-black/40">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Ask Copilot..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500 focus:bg-white/10 transition">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white p-3 rounded-xl transition">➤</button>
+                </form>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="w-14 h-14 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group">
+            <svg id="icon-open" class="w-7 h-7 block group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+            <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </div>
+
+    <!-- Link to external scripts.js -->
+    <script src="scripts.js"></script>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+        // --- CONFIGURATION ---
+        const GEMINI_API_KEY = "AIzaSyCmXpngiCz5tuYXdfVSZYaJNe6t1WDZMNs"; 
+        const PYTHON_STOCK_API_URL = "http://127.0.0.1:5000/api/v1/trade"; 
+        const PYTHON_API_TOKEN = "YOUR_SECRET_TOKEN";
+
+        // --- STATE ---
+        let chatMode = 'copilot';
+        const mockStocks = [
+            { ticker: 'MSFT', price: 415.20, change: '+1.5%' },
+            { ticker: 'NVDA', price: 890.00, change: '+2.1%' },
+            { ticker: 'GOOG', price: 175.50, change: '-0.4%' },
+            { ticker: 'BTC', price: 64200.00, change: '+3.2%' },
+            { ticker: 'ETH', price: 3450.00, change: '+1.1%' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStocks();
+            renderCharts();
+            setupChat();
+            renderProjects();
+            // Initialize default view
+            showPage('dashboard');
+        });
+
+        // --- PAGE NAVIGATION LOGIC ---
+        function showPage(pageId) {
+            // 1. Hide all pages first
+            const allPages = document.querySelectorAll('[id^="page-"]');
+            allPages.forEach(page => {
+                page.classList.remove('visible-page');
+                page.classList.add('hidden-page');
+            });
+
+            // 2. Handle specific logic
+            if (pageId === 'dashboard') {
+                // Show the main dashboard
+                const dashboard = document.getElementById('page-dashboard');
+                dashboard.classList.remove('hidden-page');
+                dashboard.classList.add('visible-page');
+            } else {
+                // Show the specific detail page overlay
+                const target = document.getElementById('page-' + pageId);
+                if (target) {
+                    target.classList.remove('hidden-page');
+                    target.classList.add('visible-page');
+                }
+            }
+        }
+
+        // --- 1. CHART.JS RENDERING ---
+        function renderCharts() {
+            new Chart(document.getElementById('stocksChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Portfolio Growth',
+                        data: [12000, 12500, 12300, 13000, 13800, 14205],
+                        borderColor: '#818cf8', backgroundColor: 'rgba(129, 140, 248, 0.1)', fill: true, tension: 0.4
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9ca3af' } }, x: { grid: { display: false }, ticks: { color: '#9ca3af' } } } }
+            });
+            new Chart(document.getElementById('jobsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Applied', 'Phone Screen', 'Technical', 'Final', 'Offers'],
+                    datasets: [{
+                        label: 'Count',
+                        data: [45, 12, 5, 3, 1],
+                        backgroundColor: ['rgba(255, 255, 255, 0.2)', 'rgba(234, 179, 8, 0.5)', 'rgba(59, 130, 246, 0.5)', 'rgba(168, 85, 247, 0.5)', 'rgba(34, 197, 94, 0.8)'], borderRadius: 5
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } } } }
+            });
+        }
+
+        // --- 2. STOCK LIST ---
+        function renderStocks() {
+            const container = document.getElementById('stock-list');
+            container.innerHTML = mockStocks.map(s => `
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition">
+                    <div><div class="font-bold">${s.ticker}</div><div class="text-xs ${s.change.includes('+') ? 'text-green-400' : 'text-red-400'}">${s.change}</div></div>
+                    <div class="flex items-center gap-3"><div class="font-mono font-bold">$${s.price.toLocaleString()}</div><button onclick="executeTrade('${s.ticker}')" class="px-2 py-1 bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold rounded transition">BUY</button></div>
+                </div>
+            `).join('');
+        }
+        async function executeTrade(ticker) { alert(`Simulated BUY order for ${ticker} sent to Python API.`); }
+
+        // --- 3. PROJECTS ---
+        function renderProjects() {
+            const container = document.getElementById('project-list');
+            const data = [{ name: 'Client Migration', status: 'Pending', icon: '💻', lastUpdate: '1d ago' }, { name: 'Q4 Budget Analysis', status: 'Review', icon: '📊', lastUpdate: '5h ago' }];
+            const html = data.map(p => `
+                <div class="glass-card p-5 rounded-2xl flex items-center justify-between border-l-4 border-indigo-500">
+                    <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-2xl">${p.icon}</div><div><h3 class="font-bold text-lg">${p.name}</h3><p class="text-sm text-gray-400">Due: ${p.lastUpdate}</p></div></div>
+                    <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-bold">${p.status.toUpperCase()}</span>
+                </div>
+            `).join('');
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        // --- 4. CHAT LOGIC ---
+        function setChatMode(mode) {
+            chatMode = mode;
+            document.getElementById('chat-status').innerText = mode === 'copilot' ? 'MS Copilot Mode' : 'Gemini AI Mode';
+            const btnCopilot = document.getElementById('btn-copilot'); const btnGemini = document.getElementById('btn-gemini');
+            if(mode === 'copilot') { btnCopilot.className = "px-3 py-1 text-xs rounded-md bg-indigo-600 text-white transition"; btnGemini.className = "px-3 py-1 text-xs rounded-md text-gray-400 hover:text-white transition"; } 
+            else { btnGemini.className = "px-3 py-1 text-xs rounded-md bg-fuchsia-600 text-white transition"; btnCopilot.className = "px-3 py-1 text-xs rounded-md text-gray-400 hover:text-white transition"; }
+        }
+        function setupChat() {
+            document.getElementById('chat-form').addEventListener('submit', async (e) => {
+                e.preventDefault(); const input = document.getElementById('chat-input');
+                if(input.value.trim()) {
+                    addMessage(input.value, 'user'); const loadingId = addMessage('Thinking...', 'agent', true);
+                    let responseText = "";
+                    if (chatMode === 'copilot') { responseText = handleCopilotMock(input.value); } else { responseText = await handleGeminiReal(input.value); }
+                    document.getElementById(loadingId).remove(); addMessage(responseText, 'agent'); input.value = '';
+                }
+            });
+        }
+        function addMessage(text, sender, isLoading = false) {
+            const container = document.getElementById('chat-messages'); const id = 'msg-' + Date.now(); const isUser = sender === 'user';
+            container.insertAdjacentHTML('beforeend', `<div id="${id}" class="flex ${isUser ? 'justify-end' : 'justify-start'} animate-fade-in"><div class="${isUser ? 'bg-indigo-600 text-white' : 'bg-white/10 text-gray-200'} p-3 rounded-2xl max-w-[85%] text-sm mb-2 ${isLoading ? 'animate-pulse' : ''}">${text}</div></div>`);
+            container.scrollTop = container.scrollHeight; return id;
+        }
+        function handleCopilotMock(query) {
+            const q = query.toLowerCase();
+            if(q.includes('email')) return "✅ Checked Outlook. 3 unread high-priority emails.";
+            if(q.includes('log')) return "✅ Triggered Power Automate: Logged 4 hours to Project Nexus.";
+            return "I am ready to automate your Microsoft tasks.";
+        }
+        async function handleGeminiReal(query) {
+            if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("PASTE")) return "Error: API Key Missing.";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
+            try {
+                const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: query }] }] }) });
+                const data = await response.json(); return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
+            } catch (e) { return "Error connecting to Gemini."; }
+        }
+    </script>
+</body>
+</html>
