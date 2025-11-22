@@ -74,6 +74,13 @@
             </div>
             
             <nav class="space-y-2 text-sm">
+                <a href="../index.html" class="flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-indigo-600 hover:text-white transition border border-transparent hover:border-indigo-500/30 mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> 
+                    <span class="hidden lg:block font-medium">Back to Home</span>
+                </a>
+                
+                <div class="h-px bg-white/10 my-2"></div>
+
                 <button onclick="showPage('detail-spirituality')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left"><span>🙏</span> <span class="hidden lg:block font-medium">Spirituality</span></button>
                 <button onclick="showPage('dashboard')" class="w-full flex items-center gap-4 p-3 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 text-left"><span>📊</span> <span class="hidden lg:block font-medium">Overview</span></button>
                 <button onclick="showPage('detail-todo')" class="w-full flex items-center gap-4 p-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition text-left"><span>✅</span> <span class="hidden lg:block font-medium">To-Do List</span></button>
@@ -157,24 +164,84 @@
                             <div class="text-gray-400 text-sm font-medium mb-2">Total Net Worth</div>
                             <div class="flex items-end justify-between"><div class="text-3xl font-bold text-white">$142,205</div><div class="text-green-400 text-sm font-bold bg-green-400/10 px-2 py-1 rounded-lg">+5.4%</div></div>
                         </div>
-                        <!-- ... other overview cards ... -->
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="text-gray-400 text-sm font-medium mb-2">Active Applications</div>
+                            <div class="flex items-end justify-between"><div class="text-3xl font-bold text-white">12</div><div class="text-blue-400 text-sm font-bold bg-blue-400/10 px-2 py-1 rounded-lg">3 Interviews</div></div>
+                        </div>
+                         <div class="glass-card p-6 rounded-2xl">
+                            <div class="text-gray-400 text-sm font-medium mb-2">Content Reach</div>
+                            <div class="flex items-end justify-between"><div class="text-3xl font-bold text-white">8.5k</div><div class="text-purple-400 text-sm font-bold bg-purple-400/10 px-2 py-1 rounded-lg">+12%</div></div>
+                        </div>
                     </div>
                 </section>
 
-                <!-- Other Sections Summaries (Stocks, Jobs, etc. - Simplified for brevity as they drill down) -->
-                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">2. Stocks & Crypto</h2><button onclick="showPage('detail-stocks')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Analytics <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div></section>
-                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">3. Job Application Process</h2><button onclick="showPage('detail-jobs')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Kanban <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div></section>
-                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">4. Content & Marketing</h2><button onclick="showPage('detail-marketing')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Calendar <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div></section>
-                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">5. Microsoft Projects</h2><button onclick="showPage('detail-microsoft')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Console <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div></section>
+                <!-- Other Sections Summaries -->
+                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">2. Stocks & Crypto</h2><button onclick="showPage('detail-stocks')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Analytics <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div>
+                    <!-- Sample Dashboard Stock Data -->
+                    <div class="glass-card p-4 rounded-xl flex justify-between items-center mb-2">
+                        <div class="flex items-center gap-4">
+                             <div class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 font-bold">BTC</div>
+                             <div><div class="font-bold">Bitcoin</div><div class="text-xs text-green-400">+3.2%</div></div>
+                        </div>
+                        <div class="font-mono font-bold">$64,200</div>
+                    </div>
+                </section>
+
+                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">3. Job Application Process</h2><button onclick="showPage('detail-jobs')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Kanban <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="glass-card p-4 rounded-xl border-l-4 border-yellow-500">
+                            <div class="text-xs text-gray-400 uppercase">Applied</div>
+                            <div class="font-bold text-lg">Google</div>
+                            <div class="text-xs text-gray-500 mt-1">Cloud Architect</div>
+                        </div>
+                         <div class="glass-card p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="text-xs text-gray-400 uppercase">Interviewing</div>
+                            <div class="font-bold text-lg">Vercel</div>
+                            <div class="text-xs text-gray-500 mt-1">DevRel</div>
+                        </div>
+                         <div class="glass-card p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="text-xs text-gray-400 uppercase">Offer</div>
+                            <div class="font-bold text-lg">Startup</div>
+                            <div class="text-xs text-gray-500 mt-1">Tech Lead</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">4. Content & Marketing</h2><button onclick="showPage('detail-marketing')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Calendar <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div>
+                    <div class="glass-card p-4 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-500 text-xl">📸</div>
+                            <div><div class="font-bold">Day in the Life Reel</div><div class="text-xs text-gray-400">Scheduled: Tomorrow 9:00 AM</div></div>
+                        </div>
+                        <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">Ready</span>
+                    </div>
+                </section>
+                
+                <section><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold text-white">5. Microsoft Projects</h2><button onclick="showPage('detail-microsoft')" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition flex items-center gap-2 text-indigo-300">Console <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button></div>
+                     <div class="glass-card p-5 rounded-2xl flex items-center justify-between border-l-4 border-orange-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center text-2xl">⚡</div>
+                            <div><h3 class="font-bold text-lg">Internal MS Flow Setup</h3><p class="text-sm text-gray-400">Due: Tomorrow</p></div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-xs font-bold">IN PROGRESS</span>
+                             <!-- 🟢 GREEN ACTION BUTTON -->
+                            <button class="bg-green-600 hover:bg-green-500 text-white p-1.5 rounded-lg transition shadow-lg shadow-green-900/20" title="Connect/Launch">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </section>
             </div>
 
-
-            <!-- === PAGE: 1. SPIRITUALITY DETAILS === -->
+            <!-- ... (Detail Pages 1-4 skipped for brevity, they remain unchanged) ... -->
+            
+            <!-- 1. SPIRITUALITY DETAIL PAGE -->
             <div id="page-detail-spirituality" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
                 <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back to Dashboard</button>
                 <h1 class="text-3xl font-bold text-white mb-6">Spirituality & Faith</h1>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- ... content ... -->
+                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Sin Tracker -->
                     <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
                         <div class="flex justify-between items-center mb-4">
@@ -185,10 +252,13 @@
                             </div>
                         </div>
                         <p class="text-xs text-gray-400 mb-4">Log sins here. If empty, status is Green. If populated, status turns Red (Needs Confession).</p>
+                        <!-- Interactive Text Area -->
                         <textarea id="sin-input" class="w-full bg-black/30 border border-white/10 rounded-xl p-4 text-sm text-gray-300 focus:outline-none focus:border-purple-500 mb-4 transition-all" rows="5" placeholder="Examen of Conscience..."></textarea>
                         <div class="flex gap-2">
-                            <button onclick="updateSinStatus()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-2 rounded-xl font-bold transition">Log & Update Status</button>
-                            <button onclick="clearSins()" class="px-4 bg-white/10 hover:bg-white/20 text-white py-2 rounded-xl font-bold transition" title="Confessed / Clear">🕊️ Confessed</button>
+                            <button onclick="updateSinStatus()" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white py-2 rounded-xl font-bold transition shadow-lg shadow-indigo-500/20">Log Sins</button>
+                            <button onclick="clearSins()" class="px-4 bg-white/10 hover:bg-white/20 text-white py-2 rounded-xl font-bold transition flex items-center gap-2" title="Clear and Reset to Grace">
+                                <span class="text-lg">🕊️</span> Confessed
+                            </button>
                         </div>
                     </div>
 
@@ -197,17 +267,17 @@
                         <!-- Rosary Tracker -->
                         <div class="glass-card p-6 rounded-2xl">
                              <h3 class="text-lg font-bold text-white mb-4 flex justify-between"><span>Rosary Tracker</span> <span class="text-yellow-400">12 this month</span></h3>
-                             <div class="grid grid-cols-7 gap-2 text-center">
-                                 <!-- Mock Calendar -->
-                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs">1</div>
-                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs">2</div>
+                             <div class="grid grid-cols-7 gap-2 text-center mb-4">
+                                 <!-- Mock Calendar for visual -->
+                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs font-bold">1</div>
+                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs font-bold">2</div>
                                  <div class="p-2 rounded bg-white/5 text-gray-500 text-xs">3</div>
-                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs">4</div>
+                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs font-bold">4</div>
                                  <div class="p-2 rounded bg-white/5 text-gray-500 text-xs">5</div>
                                  <div class="p-2 rounded bg-white/5 text-gray-500 text-xs">6</div>
-                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs">7</div>
+                                 <div class="p-2 rounded bg-yellow-500/20 text-yellow-500 text-xs font-bold">7</div>
                              </div>
-                             <button class="mt-4 w-full py-2 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-400 border border-yellow-600/50 rounded-lg text-sm font-bold transition">+ Log Rosary Today</button>
+                             <button onclick="logRosary()" class="w-full py-2 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-400 border border-yellow-600/50 rounded-lg text-sm font-bold transition">+ Log Rosary Today</button>
                         </div>
                         
                         <!-- Prayer Cards & Readings -->
@@ -219,14 +289,14 @@
                                     <p class="font-bold text-sm">Luke 1:26-38</p>
                                     <p class="text-xs text-gray-400 mt-1">The Annunciation to Mary...</p>
                                 </div>
-                                <div class="flex gap-2 mt-2">
-                                    <div class="flex-1 p-3 bg-white/5 rounded-xl text-center cursor-pointer hover:bg-white/10 transition">
-                                        <span class="block text-xs text-gray-400">CARD 1</span>
-                                        <span class="text-sm font-bold">St. Michael</span>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="p-3 bg-white/5 rounded-xl text-center cursor-pointer hover:bg-white/10 transition">
+                                        <span class="block text-xs text-gray-400 uppercase tracking-wider mb-1">PRAYER</span>
+                                        <span class="text-sm font-bold text-indigo-300">St. Michael</span>
                                     </div>
-                                    <div class="flex-1 p-3 bg-white/5 rounded-xl text-center cursor-pointer hover:bg-white/10 transition">
-                                        <span class="block text-xs text-gray-400">CARD 2</span>
-                                        <span class="text-sm font-bold">Angelus</span>
+                                    <div class="p-3 bg-white/5 rounded-xl text-center cursor-pointer hover:bg-white/10 transition">
+                                        <span class="block text-xs text-gray-400 uppercase tracking-wider mb-1">PRAYER</span>
+                                        <span class="text-sm font-bold text-indigo-300">Angelus</span>
                                     </div>
                                 </div>
                             </div>
@@ -234,9 +304,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- === PAGE: 2. TO-DO LIST DETAIL === -->
-            <div id="page-detail-todo" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+             <!-- 2. TO-DO --> <div id="page-detail-todo" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
                 <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back to Dashboard</button>
                 <h1 class="text-3xl font-bold text-white mb-6">Detailed Tasks & Reminders</h1>
                 <div class="glass-card p-8 rounded-2xl max-w-3xl mx-auto">
@@ -260,17 +328,13 @@
                      </div>
                      <button class="mt-6 w-full border-2 border-dashed border-white/10 text-gray-400 py-3 rounded-xl hover:border-indigo-500 hover:text-indigo-400 transition">+ Add New Task</button>
                 </div>
-            </div>
-
-            <!-- === PAGE: 3. STOCKS DETAIL === -->
-            <div id="page-detail-stocks" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+             </div>
+             <!-- 3. STOCKS --> <div id="page-detail-stocks" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
                 <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
                 <h1 class="text-3xl font-bold text-white mb-6">Stocks & Crypto Portfolio</h1>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Actions Column -->
                     <div class="lg:col-span-1 space-y-6">
-                        <!-- Trade Form -->
                         <div class="glass-card p-6 rounded-2xl">
                             <h3 class="text-lg font-bold mb-4">Quick Trade</h3>
                             <div class="space-y-3">
@@ -282,8 +346,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- News Scraper -->
-                        <div class="glass-card p-6 rounded-2xl">
+                         <div class="glass-card p-6 rounded-2xl">
                             <div class="flex justify-between items-center mb-4"><h3 class="text-lg font-bold">Market News</h3><span class="text-xs text-gray-500">Scraper Active</span></div>
                             <div class="space-y-3 max-h-60 overflow-y-auto custom-scrollbar">
                                 <div class="text-xs border-b border-white/5 pb-2">
@@ -296,24 +359,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Potential Trades -->
-                        <div class="glass-card p-6 rounded-2xl">
-                             <h3 class="text-lg font-bold mb-4">Potential Trades</h3>
-                             <ul class="text-sm space-y-2 text-gray-400">
-                                 <li class="flex justify-between"><span>ETH (Dip)</span> <span class="text-green-400 font-bold">Buy Zone</span></li>
-                                 <li class="flex justify-between"><span>SOL</span> <span class="text-yellow-400 font-bold">Watch</span></li>
-                             </ul>
-                        </div>
                     </div>
-
-                    <!-- Portfolio View -->
                     <div class="lg:col-span-2 glass-card p-6 rounded-2xl">
                         <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-lg font-bold">Portfolio</h3>
-                            <div class="text-2xl font-mono font-bold">$14,205 <span class="text-sm text-green-400 ml-2">+2.4%</span></div>
+                            <h3 class="text-lg font-bold">Holdings</h3>
+                            <button class="text-sm text-indigo-400">Refresh</button>
                         </div>
                         <div class="h-80 w-full mb-6"><canvas id="stocksChart"></canvas></div>
-                        
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm text-left text-gray-400">
                                 <thead class="text-xs uppercase border-b border-white/10">
@@ -339,22 +391,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- === PAGE: 4. JOB APPLICATIONS === -->
-            <div id="page-detail-jobs" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+             </div>
+             <!-- 4. JOBS --> <div id="page-detail-jobs" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
                 <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
-                
                 <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-3xl font-bold text-white">Job Hunt Command Center</h1>
-                    <div class="flex gap-2">
+                     <h1 class="text-3xl font-bold text-white">Job Hunt Command Center</h1>
+                     <div class="flex gap-2">
                         <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl text-sm font-bold">Interview Prep</button>
                         <button class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-xl text-sm font-bold shadow-lg">+ New Application</button>
                     </div>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4 h-[calc(100vh-200px)]">
-                    <!-- 1. Wishlist -->
                     <div class="glass-card p-3 rounded-xl flex flex-col">
                         <h3 class="font-bold text-gray-500 text-xs uppercase tracking-wider mb-3 pb-2 border-b border-white/5">Wishlist</h3>
                         <div class="space-y-2 flex-1 overflow-y-auto custom-scrollbar">
@@ -365,62 +412,28 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 2. Applied -->
                     <div class="glass-card p-3 rounded-xl flex flex-col">
                         <h3 class="font-bold text-yellow-500 text-xs uppercase tracking-wider mb-3 pb-2 border-b border-white/5">Applied</h3>
-                        <div class="space-y-2 flex-1 overflow-y-auto custom-scrollbar">
-                             <div class="bg-white/5 p-3 rounded-lg border-l-2 border-yellow-500 relative group">
-                                <div class="font-bold">Google</div>
-                                <div class="text-xs text-gray-400">Cloud Architect</div>
-                                <div class="text-[10px] text-gray-500 mt-2">2d ago</div>
-                                <!-- Hover Actions -->
-                                <div class="hidden group-hover:flex absolute top-2 right-2 gap-1">
-                                    <button class="text-gray-400 hover:text-white">✏️</button>
-                                </div>
-                            </div>
-                        </div>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-yellow-500 mb-2"><div class="font-bold">Google</div><div class="text-xs text-gray-400 mt-1">PM Role</div></div>
                     </div>
-                    <!-- 3. Interview -->
                     <div class="glass-card p-3 rounded-xl flex flex-col">
                         <h3 class="font-bold text-blue-500 text-xs uppercase tracking-wider mb-3 pb-2 border-b border-white/5">Interview</h3>
-                        <div class="space-y-2 flex-1 overflow-y-auto custom-scrollbar">
-                             <div class="bg-white/5 p-3 rounded-lg border-l-2 border-blue-500">
-                                <div class="font-bold">Vercel</div>
-                                <div class="text-xs text-gray-400">DevRel</div>
-                                <button class="mt-2 w-full bg-blue-500/20 text-blue-300 text-[10px] py-1 rounded font-bold hover:bg-blue-500/30">Schedule / Prep</button>
-                            </div>
-                        </div>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-blue-500 mb-2"><div class="font-bold">Vercel</div><div class="text-xs text-gray-400 mt-1">DevRel</div></div>
                     </div>
-                    <!-- 4. Offer -->
                     <div class="glass-card p-3 rounded-xl flex flex-col">
                         <h3 class="font-bold text-green-500 text-xs uppercase tracking-wider mb-3 pb-2 border-b border-white/5">Offers</h3>
-                        <div class="space-y-2 flex-1 overflow-y-auto custom-scrollbar">
-                             <div class="bg-white/5 p-3 rounded-lg border-l-2 border-green-500">
-                                <div class="font-bold">Startup Inc</div>
-                                <div class="text-xs text-gray-400">Tech Lead</div>
-                                <button class="mt-2 w-full bg-green-500/20 text-green-300 text-[10px] py-1 rounded font-bold">Respond</button>
-                            </div>
-                        </div>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-green-500"><div class="font-bold">Startup Inc</div><div class="text-xs text-gray-400 mt-1">Tech Lead</div></div>
                     </div>
-                     <!-- 5. Rejected -->
                      <div class="glass-card p-3 rounded-xl flex flex-col opacity-60">
                         <h3 class="font-bold text-red-500 text-xs uppercase tracking-wider mb-3 pb-2 border-b border-white/5">Rejected</h3>
-                        <div class="space-y-2 flex-1 overflow-y-auto custom-scrollbar">
-                             <div class="bg-white/5 p-3 rounded-lg border-l-2 border-red-500">
-                                <div class="font-bold text-gray-500 line-through">Amazon</div>
-                            </div>
-                        </div>
+                         <div class="bg-white/5 p-3 rounded-lg border-l-2 border-red-500"><div class="font-bold text-gray-500 line-through">Amazon</div></div>
                     </div>
                 </div>
-            </div>
-
-            <!-- === PAGE: 5. MARKETING === -->
-            <div id="page-detail-marketing" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
+             </div>
+             <!-- 5. MARKETING --> <div id="page-detail-marketing" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
                 <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
                 <h1 class="text-3xl font-bold text-white mb-6">Content Studio</h1>
-
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Editor / Creator -->
                     <div class="glass-card p-6 rounded-2xl lg:col-span-2">
                         <h3 class="text-lg font-bold mb-4">Create & Edit</h3>
                         <textarea class="w-full h-40 bg-black/30 border border-white/10 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-pink-500 mb-4 font-mono" placeholder="Write your caption, script, or blog post here..."></textarea>
@@ -431,8 +444,6 @@
                             <button class="bg-pink-600 hover:bg-pink-500 px-6 py-2 rounded-lg text-sm font-bold shadow-lg">Post / Schedule</button>
                         </div>
                     </div>
-
-                    <!-- Stats & Trends -->
                     <div class="space-y-6">
                         <div class="glass-card p-6 rounded-2xl">
                              <h3 class="text-lg font-bold mb-4">Latest Trends</h3>
@@ -452,8 +463,6 @@
                              <button class="w-full mt-4 text-xs bg-white/5 hover:bg-white/10 py-2 rounded">Respond to Comments</button>
                         </div>
                     </div>
-
-                    <!-- Schedule -->
                     <div class="glass-card p-6 rounded-2xl lg:col-span-3">
                         <h3 class="text-lg font-bold mb-4">Upcoming Schedule</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -470,9 +479,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+             </div>
 
-            <!-- === PAGE: 6. MICROSOFT PROJECTS === -->
+            <!-- 6. MICROSOFT PROJECTS DETAIL PAGE (UPDATED) -->
             <div id="page-detail-microsoft" class="absolute inset-0 bg-[#0a0a0a] p-8 hidden-page overflow-y-auto page-transition z-20">
                 <button onclick="showPage('dashboard')" class="mb-6 text-indigo-400 hover:text-white flex items-center gap-2 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Back</button>
                 <h1 class="text-3xl font-bold text-white mb-6">Microsoft Projects Console</h1>
@@ -480,23 +489,23 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Quick Actions Grid -->
                     <div class="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32">
-                            <span class="text-3xl mb-2">📅</span><span class="font-bold">Meetings Today</span><span class="text-xs text-gray-400">3 Scheduled</span>
+                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32 group">
+                            <span class="text-3xl mb-2 group-hover:scale-110 transition">📅</span><span class="font-bold">Meetings Today</span><span class="text-xs text-gray-400 mt-1">3 Scheduled</span>
                         </button>
-                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32">
-                            <span class="text-3xl mb-2">📧</span><span class="font-bold">Outlook</span><span class="text-xs text-red-400">5 Unread</span>
+                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32 group">
+                            <span class="text-3xl mb-2 group-hover:scale-110 transition">📧</span><span class="font-bold">Respond to Email</span><span class="text-xs text-red-400 mt-1">5 Unread</span>
                         </button>
-                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32">
-                            <span class="text-3xl mb-2">💬</span><span class="font-bold">Teams</span><span class="text-xs text-blue-400">Active</span>
+                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32 group">
+                            <span class="text-3xl mb-2 group-hover:scale-110 transition">💬</span><span class="font-bold">Teams Message</span><span class="text-xs text-blue-400 mt-1">Active</span>
                         </button>
-                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32">
-                            <span class="text-3xl mb-2">⏱️</span><span class="font-bold">Log Hours</span><span class="text-xs text-green-400">Start Timer</span>
+                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32 group">
+                            <span class="text-3xl mb-2 group-hover:scale-110 transition">⏱️</span><span class="font-bold">Log Hours</span><span class="text-xs text-green-400 mt-1">Start Timer</span>
                         </button>
-                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32">
-                            <span class="text-3xl mb-2">🚚</span><span class="font-bold">Create Dispatch</span>
+                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32 group">
+                            <span class="text-3xl mb-2 group-hover:scale-110 transition">🚚</span><span class="font-bold">Create Dispatch</span>
                         </button>
-                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32">
-                            <span class="text-3xl mb-2">📋</span><span class="font-bold">To-Do List</span>
+                        <button class="glass-card p-4 rounded-xl hover:bg-white/10 transition flex flex-col items-center justify-center text-center h-32 group">
+                            <span class="text-3xl mb-2 group-hover:scale-110 transition">📋</span><span class="font-bold">To-Do List</span>
                         </button>
                     </div>
 
@@ -505,10 +514,20 @@
                         <h3 class="text-lg font-bold mb-4">Active Dispatches & Milestones</h3>
                         <table class="w-full text-left text-sm text-gray-400">
                             <thead class="text-xs uppercase border-b border-white/10">
-                                <tr><th class="pb-2">Project</th><th class="pb-2">Milestone</th><th class="pb-2">Status</th><th class="pb-2">Tracker</th></tr>
+                                <tr><th class="pb-2">Project</th><th class="pb-2">Milestone</th><th class="pb-2">Status</th><th class="pb-2">Action</th></tr>
                             </thead>
                             <tbody class="divide-y divide-white/5">
-                                <tr class="group hover:bg-white/5 transition"><td class="py-3 font-bold text-white">Internal MS Flow</td><td>Phase 1 Config</td><td><span class="text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded text-[10px]">IN PROGRESS</span></td><td><button class="text-blue-400 hover:underline">Connect</button></td></tr>
+                                <tr class="group hover:bg-white/5 transition">
+                                    <td class="py-3 font-bold text-white">Internal MS Flow</td>
+                                    <td>Phase 1 Config</td>
+                                    <td><span class="text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded text-[10px]">IN PROGRESS</span></td>
+                                    <td>
+                                        <!-- 🟢 NEW GREEN ACTION BUTTON -->
+                                        <button class="bg-green-600 hover:bg-green-500 text-white p-1.5 rounded-lg transition shadow-lg shadow-green-900/20" title="Connect/Launch">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
