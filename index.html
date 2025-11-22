@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="./css/main.css">
     <!-- Google Customer Engine Verification -->
     <meta name="google-site-verification" content="OjleFUTuZiQNay5fZp3S00cBpy8cFMebVFH7VG0DQv4" />
+    <!-- Internal Style override for the dashboard button to make it stand out -->
+    <style>
+        .dashboard-btn {
+            color: #4ade80 !important; /* Green color to signify 'active/app' */
+            transition: transform 0.2s;
+        }
+        .dashboard-btn:hover {
+            transform: scale(1.1);
+            color: #22c55e !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -54,6 +65,11 @@
             </div>
 
             <div class="list list-right">
+                <!-- DASHBOARD SWITCHER BUTTON (ADDED HERE) -->
+                <a href="./dashboard/index.html" class="btn place-items-center dashboard-btn" title="Switch to Dashboard">
+                    <i class="ri-dashboard-line"></i>
+                </a>
+
                 <button class="btn place-items-center" id="theme-toggle-btn">
                     <i class="ri-sun-line sun-icon"></i>
                     <i class="ri-moon-line moon-icon"></i>
